@@ -7,7 +7,7 @@ package com.example.medico.Activity;
         import com.example.medico.Model.User;
         import com.example.medico.R;
         import com.example.medico.Fragments.homeFrag;
-        import com.example.medico.Activity.newPost;
+        import com.example.medico.newPost;
         import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
         import androidx.annotation.NonNull;

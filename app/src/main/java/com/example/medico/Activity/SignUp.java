@@ -35,10 +35,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.spark.submitbutton.SubmitButton;
 
 public class SignUp extends AppCompatActivity {
-    SubmitButton BtnSuSignUp;
+    Button BtnSuSignUp;
     EditText FName, LName,ContactNo, Password, Email, CPassword;
     TextView TvLogin;
     boolean twice;
@@ -58,8 +57,7 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-    //    BtnSuSignUp = (Button) findViewById(R.id.BtnSuSignUp);
-        BtnSuSignUp = (SubmitButton) findViewById(R.id.BtnSuSignUp);
+        BtnSuSignUp = (Button) findViewById(R.id.BtnSuSignUp);
         FName = (EditText) findViewById(R.id.FName);
         LName = (EditText) findViewById(R.id.LName);
         CPassword = (EditText) findViewById(R.id.CPassword);
@@ -107,52 +105,52 @@ public class SignUp extends AppCompatActivity {
         BtnSuSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* dialog = new ProgressDialog(SignUp.this);
+                dialog = new ProgressDialog(SignUp.this);
                 dialog.setMessage("Loading");
                 dialog.show();
-               */ if (FName.getText().toString().isEmpty()) {
+                if (FName.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "FirstName Required..!!", Toast.LENGTH_SHORT).show();
                     FName.setError("FirstName Required");
-                 //   dialog.dismiss();
+                    dialog.dismiss();
                     return;
                 } else if (LName.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "LastName Required..!!", Toast.LENGTH_SHORT).show();
                     LName.setError("LastName Required");
-                   // dialog.dismiss();
+                    dialog.dismiss();
                     return;
                 } else if (ContactNo.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Contact Required..!!", Toast.LENGTH_SHORT).show();
                     ContactNo.setError("Contact Required");
-                 //   dialog.dismiss();
+                    dialog.dismiss();
                     return;
                 } else if (!isContactNoValid(ContactNo.getText().toString().trim())) {
                     Toast.makeText(getApplicationContext(), "ContactNo invalid..!!", Toast.LENGTH_SHORT).show();
-                 //   ContactNo.setError("Contact Invalid");
+                    ContactNo.setError("Contact Invalid");
                     return;
                 } else if (Email.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Email Required..!!", Toast.LENGTH_SHORT).show();
                     Email.setError("Email Required");
-                 //   dialog.dismiss();
+                    dialog.dismiss();
                     return;
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(Email.getText().toString().trim()).matches()) {
                     Toast.makeText(getApplicationContext(), "Email Invaild..!!", Toast.LENGTH_SHORT).show();
                     Email.setError("Email Invalid");
-                //    dialog.dismiss();
+                    dialog.dismiss();
                     return;
                 } else if (Password.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Password Required..!!", Toast.LENGTH_SHORT).show();
                     Password.setError("Password Required");
-                 //   dialog.dismiss();
+                    dialog.dismiss();
                     return;
                 } else if (CPassword.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Password Required..!!", Toast.LENGTH_SHORT).show();
                     Password.setError("Password Required");
-                //    dialog.dismiss();
+                    dialog.dismiss();
                     return;
                 } else if (!(Password.getText().toString()).equals(CPassword.getText().toString())) {
                     Toast.makeText(getApplicationContext(), "Password not match", Toast.LENGTH_SHORT).show();
                     CPassword.setError("Password not match");
-                //   dialog.dismiss();
+                    dialog.dismiss();
                     return;
                 } else {
                     // progressBar2.setVisibility(View.VISIBLE);
@@ -277,7 +275,7 @@ public class SignUp extends AppCompatActivity {
 
       public static boolean isContactNoValid(String ConnNo)
       {
-          String regExpn="\\d{10}";//regEx for contact no.
+          String regExpn="\\d{12}";//regEx for contact no.
 
           CharSequence inputStr=ConnNo;//to convert string into character sequence.
           Pattern pattern = Pattern.compile(regExpn,Pattern.CASE_INSENSITIVE);

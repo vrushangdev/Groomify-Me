@@ -18,13 +18,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.spark.submitbutton.SubmitButton;
 
 public class LogIn extends AppCompatActivity {
-    SubmitButton BtnSiSignIn;
+    Button BtnSiSignIn;
     EditText SiEmail, SiPassword;
     TextView TvRegister;
     TextView forgotpass;
+    ProgressBar progressBar;
     ProgressDialog dialog;
     private FirebaseAuth mAuth;
     @Override
@@ -32,35 +32,37 @@ public class LogIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
-        BtnSiSignIn = (SubmitButton) findViewById(R.id.BtnSiSignIn);
+        BtnSiSignIn = (Button) findViewById(R.id.BtnSiSignIn);
         SiEmail = (EditText) findViewById(R.id.SiEmail);
         SiPassword = (EditText) findViewById(R.id.SiPassword);
         TvRegister= (TextView) findViewById(R.id.TvRegister);
         forgotpass = (TextView) findViewById(R.id.forgotpass);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();
+        progressBar.setVisibility(View.INVISIBLE);
         BtnSiSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
 
             public void onClick(View view) {
-                /*dialog=new ProgressDialog(LogIn.this);
+                dialog=new ProgressDialog(LogIn.this);
                 dialog.setMessage("Loading");
-                dialog.show();*/
+                dialog.show();
               //  progressBar.setVisibility(View.VISIBLE);
                 if (SiEmail.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Email Required..!!", Toast.LENGTH_SHORT).show();
                     SiEmail.setError("Email Required");
-                  //  dialog.dismiss();
+                    dialog.dismiss();
                     return;
 
                 } else if (!Patterns.EMAIL_ADDRESS.matcher(SiEmail.getText().toString().trim()).matches()) {
                     Toast.makeText(getApplicationContext(), "Email Invaild..!!", Toast.LENGTH_SHORT).show();
                     SiEmail.setError("Email Invalid");
-                   // dialog.dismiss();
+                    dialog.dismiss();
                     return;
                 } else if (SiPassword.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Password Invalid..!!", Toast.LENGTH_SHORT).show();
                     SiPassword.setError("Password Invalid");
-                   // dialog.dismiss();
+                    dialog.dismiss();
                     return;
                 } else {
                     String email=SiEmail.getText().toString().trim();
@@ -77,7 +79,7 @@ public class LogIn extends AppCompatActivity {
                             {
                                 Toast.makeText(LogIn.this, "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
-                               // dialog.dismiss();
+                                dialog.dismiss();
                             }
                         }
                     });

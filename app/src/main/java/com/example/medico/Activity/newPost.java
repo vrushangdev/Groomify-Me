@@ -1,4 +1,5 @@
-package com.example.medico.Activity;
+package com.example.medico;
+
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,8 +18,6 @@ import android.widget.Toast;
 
 import com.android.volley.toolbox.StringRequest;
 import com.example.medico.Activity.HomeActivity;
-import com.example.medico.R;
-import com.example.medico.Translate;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.example.medico.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;

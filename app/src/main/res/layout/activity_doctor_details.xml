@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/curvedbgfull"
     android:orientation="vertical"
     android:layout_gravity="center">
@@ -83,6 +82,7 @@
                     android:text="@string/upload_docs"
                     android:textColor="#FFFFFF"
                     android:textSize="20dp" />
+
                 <ImageView
                     android:id="@+id/verify_doc"
                     android:layout_width="30dp"
@@ -99,31 +99,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:orientation="vertical">
-<!--
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="-10dp">
 
-                    <com.spark.submitbutton.SubmitButton
-                        android:id="@+id/BtnSuSignIn"
-                        android:layout_width="266dp"
-                        android:layout_height="150dp"
-                        android:orientation="horizontal"
-                        android:text="@string/confirm"
-                        android:textColor="@color/white"
-                        android:textSize="15dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:sub_btn_background="@color/colorPrimaryDark"
-                        app:sub_btn_duration="1000"
-                        app:sub_btn_line_color="@color/white"
-                        app:sub_btn_ripple_color="@color/white"
-                        app:sub_btn_tick_color="@color/colorPrimaryDark" />
-                </androidx.constraintlayout.widget.ConstraintLayout>-->
-
+                <Button
+                    android:id="@+id/BtnSuSignUp"
+                    android:layout_width="134dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/registerbtn1"
+                    android:text="@string/confirm"
+                    android:textColor="#FFF"
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </LinearLayout>

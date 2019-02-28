@@ -1,11 +1,10 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/curvedbgfull"
     android:orientation="vertical"
-    android:layout_gravity="center">
+	android:layout_gravity="center">
     
     >
     <ImageView
@@ -120,7 +119,8 @@
                 android:hint="@string/confirm_password"
                 android:inputType="textPassword"
                 android:paddingLeft="20dp"
-                android:textColorHint="#9D90D0"/>
+                android:textColorHint="#9D90D0"
+                android:textSize="20dp" />
 
             <Spinner
                 android:id="@+id/category"
@@ -146,39 +146,13 @@
                 android:popupBackground="@drawable/spinnerbg"
                 android:spinnerMode="dropdown" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="-10dp">
-
-
-                <com.spark.submitbutton.SubmitButton
-                    android:id="@+id/BtnSuSignUp"
-                    android:layout_width="266dp"
-                    android:layout_height="150dp"
-                    android:orientation="horizontal"
-                    android:text="@string/register"
-                    android:textSize="15dp"
-                    android:textColor="@color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:sub_btn_background="@color/colorPrimaryDark"
-                    app:sub_btn_duration="1000"
-                    app:sub_btn_line_color="@color/white"
-                    app:sub_btn_ripple_color="@color/white"
-                    app:sub_btn_tick_color="@color/colorPrimaryDark" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:orientation="vertical">
 
-                <!--<Button
+                <Button
                     android:id="@+id/BtnSuSignUp"
                     android:layout_width="134dp"
                     android:layout_height="36dp"
@@ -188,7 +162,7 @@
                     android:text="@string/register"
                     android:textColor="#FFF"
                     android:textStyle="bold" />
--->
+
                 <TextView
                     android:id="@+id/TvLogin"
                     android:layout_width="match_parent"
