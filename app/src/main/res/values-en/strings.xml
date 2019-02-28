@@ -1,0 +1,70 @@
+<resources>
+    <string name="app_name">Medico</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_sign_up">SignUp</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="category">
+        <item>Select Category</item>
+        <item>Patient</item>
+        <item>Doctor</item>
+    </string-array>
+
+    <string-array name="lang">
+        <item>Select Language</item>
+        <item>English</item>
+        <item>Hindi</item>
+    </string-array>
+
+    <string name="post_title">Posts</string>
+
+    <string name="confirm_password">Confirm Password</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="mobileno">Mobile Number</string>
+    <string name="register">Register</string>
+    <string name="have_an_account">Already have an Account?</string>
+
+    <string name="dont_have_an_account">Don\'t have an Account?</string>
+    <string name="log_in">Log In</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="confirm_btn">Confirm</string>
+    <string name="enter_email_address">Enter Email Address</string>
+
+    <string name="home">Home</string>
+    <string name="log_out">Log Out</string>
+    <string name="chat">Chat</string>
+    <string name="setting">Settings</string>
+    <string name="about">About</string>
+
+    <string name="verify">Verification</string>
+    <string name="sendotp">Send OTP</string>
+    <string name="confirm">Confirm</string>
+    <string name="enter_otp">Enter OTP</string>
+
+    <string name="postTitle">Title....</string>
+    <string name="postSubject">Subject....</string>
+    <string name="createnewpost">Create New Post</string>
+
+    <string name="degree">Enter Degree</string>
+    <string name="Doctor_details">Enter Doctor Details</string>
+    <string name="clinicmobileno">Clinic Contact No.</string>
+    <string name="upload_docs">Upload Documents</string>
+
+    <string name="type_message">Type a message...</string>
+
+    <string name="search">Search</string>
+
+    <string name="profile">Profile</string>
+</resources>
