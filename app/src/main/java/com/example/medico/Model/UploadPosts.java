@@ -1,9 +1,10 @@
-package com.example.medico.Model;
+package com.example.medico;
 
+import com.example.medico.Model.BlogPostId;
 import com.google.firebase.database.ServerValue;
 
 
-public class UploadPosts extends com.example.medico.Model.BlogPostId {
+public class UploadPosts extends BlogPostId {
 
     private String postKey;
     private String uploadImageUrl;
@@ -11,6 +12,8 @@ public class UploadPosts extends com.example.medico.Model.BlogPostId {
     private String uploadSubject;
     private String uploadId;
     private Object timeStamp ;
+    private String uploadTitleHindi;
+    private String uploadSubjectHindi;
 
     public Object getTimeStamp() {
         return timeStamp;
@@ -20,12 +23,14 @@ public class UploadPosts extends com.example.medico.Model.BlogPostId {
         this.timeStamp = timeStamp;
     }
 
-    public UploadPosts(String uploadImageUrl, String uploadTitle, String uploadSubject, String uploadId) {
+    public UploadPosts(String uploadImageUrl, String uploadTitle, String uploadSubject,String uploadTitleHindi,String uploadSubjectHindi, String uploadId) {
         this.uploadImageUrl = uploadImageUrl;
         this.uploadTitle = uploadTitle;
         this.uploadSubject = uploadSubject;
         this.uploadId = uploadId;
         this.timeStamp = ServerValue.TIMESTAMP;
+        this.uploadTitleHindi=uploadTitleHindi;
+        this.uploadSubjectHindi=uploadSubjectHindi;
     }
 
     public UploadPosts() {
@@ -34,6 +39,22 @@ public class UploadPosts extends com.example.medico.Model.BlogPostId {
 
     public String getUploadImageUrl() {
         return uploadImageUrl;
+    }
+
+    public String getUploadTitleHindi() {
+        return uploadTitleHindi;
+    }
+
+    public void setUploadTitleHindi(String uploadTitleHindi) {
+        this.uploadTitleHindi = uploadTitleHindi;
+    }
+
+    public String getUploadSubjectHindi() {
+        return uploadSubjectHindi;
+    }
+
+    public void setUploadSubjectHindi(String uploadSubjectHindi) {
+        this.uploadSubjectHindi = uploadSubjectHindi;
     }
 
     public String getUploadId() {
@@ -71,4 +92,5 @@ public class UploadPosts extends com.example.medico.Model.BlogPostId {
     public void setPostKey(String postKey) {
         this.postKey = postKey;
     }
+
 }

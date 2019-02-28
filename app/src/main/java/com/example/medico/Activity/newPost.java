@@ -1,36 +1,75 @@
-package com.example.medico.Activity;
+package com.example.medico;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.PersistableBundle;
+import android.os.StrictMode;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.medico.Model.UploadPosts;
-import com.example.medico.R;
+import com.android.volley.toolbox.StringRequest;
+import com.example.medico.Activity.HomeActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.example.medico.Model.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.UUID;
 
 public class newPost extends AppCompatActivity {
 
@@ -48,12 +87,17 @@ public class newPost extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_new_post);
-        newPostToolbar=findViewById(R.id.newPostToolbar);
+        newPostToolbar = findViewById(R.id.newPostToolbar);
         setSupportActionBar(newPostToolbar);
-       setSupportActionBar(newPostToolbar);
+        setSupportActionBar(newPostToolbar);
         getSupportActionBar().setTitle(R.string.createnewpost);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+        StrictMode.setThreadPolicy(policy);
+
 
         storageReference = FirebaseStorage.getInstance().getReference().child("postImages");
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -64,7 +108,7 @@ public class newPost extends AppCompatActivity {
         postTitle = findViewById(R.id.postTitle);
         postSubject = findViewById(R.id.postSubject);
         floatingPost = findViewById(R.id.floatingPost);
-        postImage= findViewById(R.id.postCertificateImage);
+        postImage = findViewById(R.id.postCertificateImage);
         //progressBarImage=findViewById(R.id.progressBarImage);
 
         postImage.setOnClickListener(new View.OnClickListener() {
@@ -103,8 +147,14 @@ public class newPost extends AppCompatActivity {
         floatingPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Variabled to be added on clickinng of send button
+
+
                 String title = postTitle.getText().toString();
                 String subject = postSubject.getText().toString();
+
+
+
                 if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(title) && postImageUri != null) {
                     // String randomName =
 
@@ -117,38 +167,30 @@ public class newPost extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     String imageDownloadLink = uri.toString();
-                                    UploadPosts uploadPosts = new UploadPosts(imageDownloadLink, postTitle.getText().toString(), postSubject.getText().toString(), userId);
-                                    addPost(uploadPosts);
+                                    String title = postTitle.getText().toString();
+                                    String summary = postSubject.getText().toString();
+
+                                    com.example.medico.UploadPosts uploadPosts = new com.example.medico.UploadPosts();
+                                    uploadPosts.setUploadImageUrl(imageDownloadLink);
+                                    uploadPosts.setUploadTitle(title);
+                                    uploadPosts.setUploadSubject(summary);
+                                    uploadPosts.setUploadId(userId);
+                                    int time = (int) (System.currentTimeMillis());
+                                    Timestamp tsTemp = new Timestamp(time);
+                                    uploadPosts.setTimeStamp(tsTemp);
+
+                                    translateService trans = new translateService();
+                                    trans.execute(uploadPosts);
+
+
+
                                 }
                             });
                         }
-                        private void addPost(UploadPosts uploadPosts) {
-
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference myRef = database.getReference("Posts").push();
-
-                            // get post unique ID and upadte post key
-                            String key = myRef.getKey();
-                            uploadPosts.setPostKey(key);
-                            uploadPosts.getTimeStamp().toString();
-
-                            // add post data to firebase database
-
-                            myRef.setValue(uploadPosts).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(newPost.this,"Post Added Succesfully",Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(newPost.this, HomeActivity.class));
-                                    //popupClickProgress.setVisibility(View.INVISIBLE);
-                                    // floatingPostBtn.set(View.VISIBLE);
-                                }
-                            });
 
 
 
 
-
-                        }
 
                     });
 
@@ -177,4 +219,91 @@ public class newPost extends AppCompatActivity {
 
     }
 
+    private class translateService extends AsyncTask<com.example.medico.UploadPosts, com.example.medico.UploadPosts, com.example.medico.UploadPosts>{
+        String toText;
+        String title;
+        String htitle;
+        String hsummary;
+        String summary;
+        String translatedTitle;
+
+        com.example.medico.UploadPosts uploadPosts = new com.example.medico.UploadPosts();
+
+
+
+        @Override
+        protected com.example.medico.UploadPosts doInBackground(com.example.medico.UploadPosts... uploadPosts) {
+            translatedTitle = "Welcome To Medico";
+            com.example.medico.UploadPosts post = new com.example.medico.UploadPosts();
+
+            for(com.example.medico.UploadPosts t:uploadPosts){
+                title=t.getUploadTitle();
+                summary=t.getUploadSubject();
+                post=t;
+            }
+            try{
+
+
+
+                Translate translateRequest = new Translate();
+                String response = Translate.prettify(translateRequest.Post(title+","+summary));
+                String content=Translate.getTranslatedText(response);
+                String[] contents=content.split(",");
+                htitle=contents[0];
+                hsummary=contents[1];
+                post.setUploadTitleHindi(htitle);
+                post.setUploadSubjectHindi(hsummary);
+
+
+
+
+                Log.d("newPost",response);
+                Log.d("newPost",content);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+            return post;
+        }
+
+
+        @Override
+        protected void onPostExecute(com.example.medico.UploadPosts post) {
+            super.onPostExecute(post);
+            addPost(post);
+
+
+
+        }
+
+    }
+
+    public void addPost(com.example.medico.UploadPosts uploadPosts) {
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Posts").push();
+
+
+        // get post unique ID and upadte post key
+        String key = myRef.getKey();
+        uploadPosts.setPostKey(key);
+        uploadPosts.getTimeStamp().toString();
+
+        // add post data to firebase database
+
+        myRef.setValue(uploadPosts).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(newPost.this, "Post Added Succesfully", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(newPost.this, HomeActivity.class));
+                //popupClickProgress.setVisibility(View.INVISIBLE);
+                // floatingPostBtn.set(View.VISIBLE);
+            }
+        });
+
+
+    }
 }
