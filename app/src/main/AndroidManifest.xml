@@ -14,10 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="stateVisible|adjustPan">
-        <activity android:name=".Activity.CommentActivity"></activity>
-        <activity android:name=".Activity.AwarenessActivity"></activity>
-		<activity android:name=".Activity.doctorDetails"
-            android:configChanges="orientation|keyboardHidden"/>
+
+        <activity android:name=".Activity.CommentActivity" />
+        <activity android:name=".Activity.AwarenessActivity" />
+        <activity
+            android:name=".Activity.doctorDetails"
+            android:configChanges="orientation|keyboardHidden" />
         <activity android:name=".Activity.PreliminariesActivity" />
         <activity android:name=".Activity.DiseasesActivity" />
         <activity android:name=".Activity.DiseaseDescriptionActivity" />
@@ -25,11 +27,7 @@
         <activity
             android:name=".Activity.settings"
             android:parentActivityName=".Activity.HomeActivity" />
-        <activity
-            android:name=".Activity.newPost"
-            android:configChanges="orientation|keyboardHidden"
-            android:parentActivityName=".Activity.HomeActivity"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".Activity.ChatActivity"
             android:configChanges="orientation|keyboardHidden"
