@@ -23,6 +23,8 @@ import android.widget.Toast;
 import android.widget.ProgressBar;
 
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 import com.example.medico.Model.User;
@@ -121,10 +123,11 @@ public class SignUp extends AppCompatActivity {
                     ContactNo.setError("Contact Required");
                     dialog.dismiss();
                     return;
-                } /*else if (!isContactNoValid(ContactNo.getText().toString().trim())) {
+                } else if (!isContactNoValid(ContactNo.getText().toString().trim())) {
                     Toast.makeText(getApplicationContext(), "ContactNo invalid..!!", Toast.LENGTH_SHORT).show();
                     ContactNo.setError("Contact Invalid");
-                    return;*/ else if (Email.getText().toString().isEmpty()) {
+                    return;
+                } else if (Email.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Email Required..!!", Toast.LENGTH_SHORT).show();
                     Email.setError("Email Required");
                     dialog.dismiss();
@@ -270,7 +273,7 @@ public class SignUp extends AppCompatActivity {
         databaseUser.child(id).setValue(user_db);
     }*/
 
-    /*  public static boolean isContactNoValid(String ConnNo)
+      public static boolean isContactNoValid(String ConnNo)
       {
           String regExpn="\\d{12}";//regEx for contact no.
 
@@ -283,7 +286,7 @@ public class SignUp extends AppCompatActivity {
 
           else
               return false;
-      }*/
+      }
     public void CleanEditText()
     {
         FName.setText("");
