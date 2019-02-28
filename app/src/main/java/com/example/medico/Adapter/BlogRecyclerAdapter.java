@@ -3,6 +3,8 @@ package com.example.medico.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +31,8 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapter.MyViewHolder> {
 
@@ -65,8 +69,19 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
     @Override
     public void onBindViewHolder(@NonNull final BlogRecyclerAdapter.MyViewHolder holder, final int position) {
         holder.setIsRecyclable(false);
-        final String blogPostId = blogList.get(position).BlogPostId;
-        holder.postTitle.setText(blogList.get(position).getUploadTitle());
+        SharedPreferences prefs = mContext.getSharedPreferences("pref",MODE_PRIVATE);
+        String lang = prefs.getString("lang","en");
+        final String  blogPostId = blogList.get(position).BlogPostId;
+        Log.d("BlogRecyclerAdapter",lang);
+        if(lang.contains("en")){
+            //blogPostId = blogList.get(position).BlogPostId;
+            holder.postTitle.setText(blogList.get(position).getUploadTitle());
+        }
+        else if(lang.contains("hi")){
+            //  blogPostId = blogList.get(position).BlogPostId;
+            holder.postTitle.setText(blogList.get(position).getUploadTitleHindi());
+        }
+
         Glide.with(mContext).load(blogList.get(position).getUploadImageUrl()).into(holder.imagePost);
         final UploadPosts uploadPosts=new UploadPosts();
         holder.imagePost.setOnClickListener(new View.OnClickListener() {
