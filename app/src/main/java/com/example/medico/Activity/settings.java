@@ -2,7 +2,6 @@ package com.example.medico.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -45,23 +44,16 @@ public class settings extends AppCompatActivity{
         language.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                SharedPreferences.Editor editor = getSharedPreferences("pref", MODE_PRIVATE).edit();
-
                 switch (position) {
                     case 0:
-
                         break;
                     case 1:
                         setLocale("en");
                         currentLanguage = "en";
-                        editor.putString("lang", "en");
-                        editor.apply();
                         break;
                     case 2:
                         setLocale("hi");
                         currentLanguage = "hi";
-                        editor.putString("lang", "hi");
-                        editor.apply();
                         break;
                 }
             }
