@@ -190,7 +190,7 @@ public class SignUp extends AppCompatActivity {
                                             intent = new Intent(SignUp.this, doctorDetails.class);
                                             intent.putExtra("phoneNumber", mid);
                                             intent.putExtra("fName", fName);
-                                            intent.putExtra("lname", lName);
+                                            intent.putExtra("lName", lName);
                                             intent.putExtra("email", email);
                                             intent.putExtra("id", id);
                                             intent.putExtra("imageURL", imageURL);
@@ -275,7 +275,7 @@ public class SignUp extends AppCompatActivity {
 
       public static boolean isContactNoValid(String ConnNo)
       {
-          String regExpn="\\d{12}";//regEx for contact no.
+          String regExpn="\\d{10}";//regEx for contact no.
 
           CharSequence inputStr=ConnNo;//to convert string into character sequence.
           Pattern pattern = Pattern.compile(regExpn,Pattern.CASE_INSENSITIVE);
