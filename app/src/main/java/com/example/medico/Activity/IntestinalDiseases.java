@@ -1,4 +1,4 @@
-package com.example.medico;
+package com.example.medico.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,9 +9,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.medico.R;
+import com.example.medico.Adapter.RecyclerViewAdapter;
+
 import java.util.ArrayList;
 
-public class VisionDiseases extends AppCompatActivity {
+public class IntestinalDiseases extends AppCompatActivity {
 
     private static final String TAG="MainActivity";
 
@@ -21,7 +24,7 @@ public class VisionDiseases extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(VisionDiseases.this,HomeActivity.class));
+        startActivity(new Intent(IntestinalDiseases.this, HomeActivity.class));
 
     }
 
@@ -29,10 +32,11 @@ public class VisionDiseases extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diseases);
+        setContentView(R.layout.activity_intestinal_diseases);
+
         Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Vision Diseases");
+        getSupportActionBar().setTitle("Intestinal Diseases");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Log.d(TAG,"onCreate: started.");
@@ -42,9 +46,10 @@ public class VisionDiseases extends AppCompatActivity {
     private void initImageBitmaps(){
         Log.d(TAG,"initImageBitmaps: preparing bitmaps.");
 
-        mNames.add("Retinopathy of Prematurity");
-        mImages.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/diseasesimages%2Fretinopathy%20of%20prematurity.png?alt=media&token=90be815a-9554-4198-8c57-358e7ffdd3d5");
-        mImageDiscription.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/DiseasesDiscription%2FROP%20en.png?alt=media&token=76e7abfe-0cc2-494f-a6e1-f83535d9f9c7");
+        mNames.add("Cerebral Palsy");
+        mImages.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/diseasesimages%2FNecrotizing%20entercolitics.png?alt=media&token=d2b16735-e648-4fa9-a841-340a0b74134d");
+        mImageDiscription.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/DiseasesDiscription%2FNEC%20en.png?alt=media&token=a5fb94c6-ed99-4b0b-9497-d79e560da597");
+
         initRecyclerView();
     }
 

@@ -275,7 +275,7 @@ public class SignUp extends AppCompatActivity {
 
       public static boolean isContactNoValid(String ConnNo)
       {
-          String regExpn="\\d{12}";//regEx for contact no.
+          String regExpn="\\d{10}";//regEx for contact no.
 
           CharSequence inputStr=ConnNo;//to convert string into character sequence.
           Pattern pattern = Pattern.compile(regExpn,Pattern.CASE_INSENSITIVE);

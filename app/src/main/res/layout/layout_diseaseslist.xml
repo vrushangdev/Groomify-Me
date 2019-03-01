@@ -11,13 +11,13 @@
         android:layout_height="100dp"
         android:src="@drawable/babyphoto2"
         android:layout_centerHorizontal="true"
-        android:id="@+id/image"/>
+        android:id="@+id/diseaseimage"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/diseasesname"
-        android:layout_below="@id/image"
+        android:layout_below="@id/diseaseimage"
         android:textColor="#000"
         android:text="Diseases"
         android:layout_centerVertical="true"

@@ -6,10 +6,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.medico.Activity.DiseaseDescriptionActivity;
 import com.example.medico.R;
 
@@ -23,11 +25,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private static final String TAG="RecyclerViewAdapter";
 
     private ArrayList<String> mImageNames=new ArrayList<>();
+    private ArrayList<String> mImages=new ArrayList<>();
+    private ArrayList<String> mImageDiscription=new ArrayList<>();
     private Context mContext;
 
-    public RecyclerViewAdapter(Context mContext,ArrayList<String> mImageNames) {
+    public RecyclerViewAdapter(Context mContext,ArrayList<String> mImageNames,ArrayList<String> mImages , ArrayList<String> mImageDiscription) {
         this.mImageNames = mImageNames;
+        this.mImages=mImages;
         this.mContext = mContext;
+        this.mImageDiscription=mImageDiscription;
     }
 
     @NonNull
@@ -42,6 +48,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG,"onBindViewHolder: called.");
+        Log.d("saumil", String.valueOf(position));
+
+       Glide.with(mContext)
+                .asBitmap()
+                .load(mImages.get(position))
+                .into(holder.diseaseimage);
         holder.diseasesname.setText(mImageNames.get(position));
 
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
@@ -52,8 +64,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 Toast.makeText(mContext,mImageNames.get(position),Toast.LENGTH_SHORT).show();
 
                 Intent intent=new Intent(mContext, DiseaseDescriptionActivity.class);
-              //  intent.putExtra("image_url",mImages.get(position));
-                intent.putExtra("imge_name",mImageNames.get(position));
+                intent.putExtra("image_url",mImages.get(position));
+                intent.putExtra("image_name",mImageNames.get(position));
+                intent.putExtra("image_discription_url",mImageDiscription.get(position));
                 mContext.startActivity(intent);
             }
         });
@@ -66,13 +79,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-
+    public static class ViewHolder extends RecyclerView.ViewHolder{
+        ImageView diseaseimage;
         TextView diseasesname;
         RelativeLayout parentLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            diseaseimage=itemView.findViewById(R.id.diseaseimage);
             diseasesname=itemView.findViewById(R.id.diseasesname);
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }

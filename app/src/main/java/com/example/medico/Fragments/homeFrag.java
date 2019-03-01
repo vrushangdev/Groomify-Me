@@ -17,7 +17,6 @@ import com.example.medico.Activity.HomeActivity;
 import com.example.medico.Adapter.BlogRecyclerAdapter;
 import com.example.medico.Model.UploadPosts;
 import com.example.medico.R;
-import com.example.medico.Model.UploadPosts;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

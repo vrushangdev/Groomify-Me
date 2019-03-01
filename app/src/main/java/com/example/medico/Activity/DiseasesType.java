@@ -1,4 +1,4 @@
-package com.example.medico;
+package com.example.medico.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -7,7 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
+
+import com.example.medico.R;
 
 public class DiseasesType extends AppCompatActivity {
 
@@ -38,7 +39,7 @@ public class DiseasesType extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-            startActivity(new Intent(DiseasesType.this,BrainDisease.class));
+            startActivity(new Intent(DiseasesType.this, BrainDisease.class));
             }
         });
 
@@ -46,7 +47,7 @@ public class DiseasesType extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DiseasesType.this,IntestinalDiseases.class));
+                startActivity(new Intent(DiseasesType.this, IntestinalDiseases.class));
             }
         });
 
@@ -54,7 +55,7 @@ public class DiseasesType extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DiseasesType.this,MentalDisorder.class));
+                startActivity(new Intent(DiseasesType.this, MentalDisorder.class));
             }
         });
 
@@ -62,7 +63,7 @@ public class DiseasesType extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DiseasesType.this,VisionDiseases.class));
+                startActivity(new Intent(DiseasesType.this, VisionDiseases.class));
             }
         });
 
@@ -71,7 +72,7 @@ public class DiseasesType extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DiseasesType.this,LungDiseases.class));
+                startActivity(new Intent(DiseasesType.this, LungDiseases.class));
             }
         });
 
@@ -79,7 +80,7 @@ public class DiseasesType extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DiseasesType.this,InfectousDiseases.class));
+                startActivity(new Intent(DiseasesType.this, InfectousDiseases.class));
             }
         });
 

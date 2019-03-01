@@ -1,7 +1,6 @@
 package com.example.medico.Activity;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -51,15 +50,15 @@ public class newPost extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth mAuth;
     private Toolbar newPostToolbar;
-
+    private ProgressDialog dialog;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_post);
-        newPostToolbar=findViewById(R.id.newPostToolbar);
+        newPostToolbar = findViewById(R.id.newPostToolbar);
         setSupportActionBar(newPostToolbar);
-       setSupportActionBar(newPostToolbar);
+        setSupportActionBar(newPostToolbar);
         getSupportActionBar().setTitle(R.string.createnewpost);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -67,18 +66,20 @@ public class newPost extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         mAuth = FirebaseAuth.getInstance();
+
         final String userId = mAuth.getCurrentUser().getUid();
+
         postImage = findViewById(R.id.blogImage);
         postTitle = findViewById(R.id.postTitle);
         postSubject = findViewById(R.id.postSubject);
         floatingPost = findViewById(R.id.floatingPost);
-        postImage= findViewById(R.id.postCertificateImage);
+        postImage = findViewById(R.id.postCertificateImage);
         //progressBarImage=findViewById(R.id.progressBarImage);
 
         postImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //storage permission
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
                     if (ContextCompat.checkSelfPermission(newPost.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -98,27 +99,26 @@ public class newPost extends AppCompatActivity {
                 }
             }
 
+            //image crop thay che ana thi.
             private void BringImagePicker() {
 
                 CropImage.activity()
                         .setGuidelines(CropImageView.Guidelines.ON)
-                        .setMinCropResultSize(512, 512)
-                        .setAspectRatio(1, 1)
+                        .setMinCropResultSize(900, 512)
+                        .setAspectRatio(16, 9)
                         .start(newPost.this);
             }
 
         });
         floatingPost.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("WrongConstant")
             @Override
             public void onClick(View view) {
-
                 String title = postTitle.getText().toString();
                 String subject = postSubject.getText().toString();
-                if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(title) && postImageUri != null) {
-                    // String randomName =
-                    floatingPost.setEnabled(false);
-
+                if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(subject) && postImageUri != null) {
+                    dialog = new ProgressDialog(newPost.this);
+                    dialog.setMessage("Posting ...");
+                    dialog.show();
                     final StorageReference filePath = storageReference.child(postImageUri.getLastPathSegment());
                     filePath.putFile(postImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -144,68 +144,33 @@ public class newPost extends AppCompatActivity {
                                     trans.execute(uploadPosts);
 
 
-
                                 }
                             });
                         }
-                        private void addPost(UploadPosts uploadPosts) {
-
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference myRef = database.getReference("Posts").push();
-
-                            // get post unique ID and upadte post key
-                            String key = myRef.getKey();
-                            uploadPosts.setPostKey(key);
-                            uploadPosts.getTimeStamp().toString();
-
-                            // add post data to firebase database
-
-                            myRef.setValue(uploadPosts).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                    Toast.makeText(newPost.this,"Post Added Succesfully",Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(newPost.this, HomeActivity.class));
-                                    //popupClickProgress.setVisibility(View.INVISIBLE);
-                                    // floatingPostBtn.set(View.VISIBLE);
-                                }
-                            });
-
-
-
-
-
-                        }
-
                     });
-
                 }
-
+                else {
+                    Toast.makeText(newPost.this,"Please Fill all the Fields",Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
-
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
                 postImageUri = result.getUri();
                 postImage.setImageURI(postImageUri);
-
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-
                 Exception error = result.getError();
-
             }
         }
-
     }
 
-    private class translateService extends AsyncTask<UploadPosts,UploadPosts,UploadPosts> {
+    private class translateService extends AsyncTask<UploadPosts, UploadPosts, UploadPosts> {
         String toText;
         String title;
         String htitle;
@@ -214,46 +179,38 @@ public class newPost extends AppCompatActivity {
         String translatedTitle;
 
         UploadPosts uploadPosts = new UploadPosts();
-        private ProgressDialog dialog;
-        @Override
+
+
+      /*  @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            dialog = new ProgressDialog(newPost.this);
-            this.dialog.setMessage("Posting ...");
-            this.dialog.show();
 
         }
-
-
+*/
 
         @Override
         protected UploadPosts doInBackground(UploadPosts... uploadPosts) {
             translatedTitle = "Welcome To Medico";
             UploadPosts post = new UploadPosts();
 
-            for(UploadPosts t:uploadPosts){
-                title=t.getUploadTitle();
-                summary=t.getUploadSubject();
-                post=t;
+            for (UploadPosts t : uploadPosts) {
+                title = t.getUploadTitle();
+                summary = t.getUploadSubject();
+                post = t;
             }
-            try{
-
-
-
+            try {
                 Translate translateRequest = new Translate();
-                String response = Translate.prettify(translateRequest.Post(title+","+summary));
-                String content=Translate.getTranslatedText(response);
-                String[] contents=content.split(",");
-                htitle=contents[0];
-                hsummary=contents[1];
+                String response = Translate.prettify(translateRequest.Post(title + "," + summary));
+                String content = Translate.getTranslatedText(response);
+                String[] contents = content.split(",");
+                htitle = contents[0];
+                hsummary = contents[1];
                 post.setUploadTitleHindi(htitle);
                 post.setUploadSubjectHindi(hsummary);
 
 
-
-
-                Log.d("newPost",response);
-                Log.d("newPost",content);
+                Log.d("newPost", response);
+                Log.d("newPost", content);
 
 
             } catch (Exception e) {
@@ -272,15 +229,7 @@ public class newPost extends AppCompatActivity {
             if (dialog.isShowing()) {
                 dialog.dismiss();
             }
-
-
-
-
-
-
         }
-
-
     }
 
     public void addPost(UploadPosts uploadPosts) {

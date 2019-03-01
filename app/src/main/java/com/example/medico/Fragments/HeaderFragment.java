@@ -1,3 +1,4 @@
+/*
 package com.example.medico.Fragments;
 
 import android.app.ProgressDialog;
@@ -173,3 +174,4 @@ public class HeaderFragment extends Fragment {
 
 
 }
+*/

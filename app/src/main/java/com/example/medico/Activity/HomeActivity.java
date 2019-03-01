@@ -3,18 +3,13 @@ package com.example.medico.Activity;
         import android.content.Intent;
         import android.os.Bundle;
 
-        import com.bumptech.glide.Glide;
-        import com.example.medico.Model.User;
-        import com.example.medico.R;
         import com.example.medico.Fragments.homeFrag;
-        import com.example.medico.Activity.newPost;
+        import com.example.medico.R;
         import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-        import androidx.annotation.NonNull;
         import androidx.fragment.app.FragmentManager;
         import androidx.fragment.app.FragmentTransaction;
 
-        import android.view.LayoutInflater;
         import android.view.View;
         import com.google.android.material.navigation.NavigationView;
         import androidx.core.view.GravityCompat;
@@ -22,68 +17,16 @@ package com.example.medico.Activity;
         import androidx.appcompat.app.ActionBarDrawerToggle;
         import androidx.appcompat.app.AppCompatActivity;
         import androidx.appcompat.widget.Toolbar;
-        import de.hdodenhof.circleimageview.CircleImageView;
 
         import android.view.Menu;
         import android.view.MenuItem;
-        import android.view.ViewGroup;
-        import android.widget.TextView;
 
         import com.google.firebase.auth.FirebaseAuth;
-        import com.google.firebase.auth.FirebaseUser;
-        import com.google.firebase.database.DataSnapshot;
-        import com.google.firebase.database.DatabaseError;
-        import com.google.firebase.database.DatabaseReference;
-        import com.google.firebase.database.FirebaseDatabase;
-        import com.google.firebase.database.ValueEventListener;
-        import com.google.firebase.storage.StorageReference;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    CircleImageView image_profile;
-    TextView username;
-    StorageReference storageReference;
-    DatabaseReference reference;
-    FirebaseUser fuser;
-    FirebaseDatabase firebaseDatabase;
 
-
-
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.nav_header_home, container, false);
-
-        image_profile = view.findViewById(R.id.profile_image);
-        username = view.findViewById(R.id.username);
-
-        firebaseDatabase=FirebaseDatabase.getInstance();
-        reference=firebaseDatabase.getReference("user_data");
-
-        fuser = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("user_data").child(fuser.getUid());
-
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
-                username.setText(user.getfName());
-                if (user.getImageUrl().equals("default")) {
-                    image_profile.setImageResource(R.mipmap.ic_launcher);
-                } else {
-                    Glide.with(getApplicationContext()).load(user.getImageUrl()).into(image_profile);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        return view;
-    }
 
 
     @Override
@@ -170,9 +113,13 @@ public class HomeActivity extends AppCompatActivity
             startActivity(new Intent(HomeActivity.this, AwarenessActivity.class));
 
         } else if (id == R.id.nav_diseases) {
-            startActivity(new Intent(HomeActivity.this, DiseasesActivity.class));
+            startActivity(new Intent(HomeActivity.this, DiseasesType.class));
 
-        }else if (id == R.id.nav_settings) {
+        }
+        else if (id == R.id.nav_equipments) {
+            startActivity(new Intent(HomeActivity.this, EquipmentsActivity.class));
+
+        } else if (id == R.id.nav_settings) {
             startActivity(new Intent(HomeActivity.this, settings.class));
             ft.commit();
         } else if (id == R.id.nav_about) {

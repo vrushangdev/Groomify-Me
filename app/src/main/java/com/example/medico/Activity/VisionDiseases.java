@@ -1,4 +1,4 @@
-package com.example.medico;
+package com.example.medico.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,9 +9,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.medico.Adapter.RecyclerViewAdapter;
+import com.example.medico.R;
+
 import java.util.ArrayList;
 
-public class BrainDisease extends AppCompatActivity {
+public class VisionDiseases extends AppCompatActivity {
 
     private static final String TAG="MainActivity";
 
@@ -21,7 +24,7 @@ public class BrainDisease extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(BrainDisease.this,HomeActivity.class));
+        startActivity(new Intent(VisionDiseases.this, HomeActivity.class));
 
     }
 
@@ -29,10 +32,10 @@ public class BrainDisease extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diseases);
+        setContentView(R.layout.activity_vision_diseases);
         Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Brain Diseases");
+        getSupportActionBar().setTitle("Vision Diseases");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Log.d(TAG,"onCreate: started.");
@@ -42,10 +45,9 @@ public class BrainDisease extends AppCompatActivity {
     private void initImageBitmaps(){
         Log.d(TAG,"initImageBitmaps: preparing bitmaps.");
 
-        mNames.add("Cerebral Palsy");
-        mImages.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/diseasesimages%2FBronchnopulmonary.png?alt=media&token=ff1d6b33-097f-4fac-8819-8e790822587a");
-        mImageDiscription.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/DiseasesDiscription%2FCerebral%20palsy%20en.png?alt=media&token=545accaf-6c25-48bf-925b-13e15f37302d");
-
+        mNames.add("Retinopathy of Prematurity");
+        mImages.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/diseasesimages%2Fretinopathy%20of%20prematurity.png?alt=media&token=90be815a-9554-4198-8c57-358e7ffdd3d5");
+        mImageDiscription.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/DiseasesDiscription%2FROP%20en.png?alt=media&token=76e7abfe-0cc2-494f-a6e1-f83535d9f9c7");
         initRecyclerView();
     }
 

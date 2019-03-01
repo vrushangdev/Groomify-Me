@@ -27,7 +27,7 @@
             android:icon="@drawable/diseaseicon"
             android:title="Diseases" />
         <item
-            android:id="@+id/nav_usage"
+            android:id="@+id/nav_equipments"
             android:icon="@drawable/usageicon"
             android:title="Equipments" />
         <item

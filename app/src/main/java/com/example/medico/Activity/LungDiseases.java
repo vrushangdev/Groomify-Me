@@ -1,4 +1,4 @@
-package com.example.medico;
+package com.example.medico.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.example.medico.R;
+import com.example.medico.Adapter.RecyclerViewAdapter;
 
 import java.util.ArrayList;
 
@@ -21,7 +24,7 @@ public class LungDiseases extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(LungDiseases.this,HomeActivity.class));
+        startActivity(new Intent(LungDiseases.this, HomeActivity.class));
 
     }
 
@@ -29,7 +32,7 @@ public class LungDiseases extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diseases);
+        setContentView(R.layout.activity_lung_diseases);
         Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Lung Diseases");

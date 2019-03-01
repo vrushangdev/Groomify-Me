@@ -39,7 +39,7 @@ public class CommentActivity extends AppCompatActivity {
     private RecyclerView commentRecyclerView;
     private List<Comment> commentList;
     TextView likeCount;
-    String key;
+    public String key;
     private CommentRecyclerAdapter commentRecyclerAdapter;
     ImageView likeBtn;
     Boolean likeChecker = false;
@@ -52,8 +52,8 @@ public class CommentActivity extends AppCompatActivity {
         getIncomingIntent();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Posts");
-       // commentSendBtn = findViewById(R.id.commentSendBtn);
-        //commentText = findViewById(R.id.commentText);
+        commentSendBtn = findViewById(R.id.commentSendBtn);
+        commentText = findViewById(R.id.commentText);
         likeCount = findViewById(R.id.likeCount);
         final FirebaseAuth mAuth = FirebaseAuth.getInstance();
         likeBtn = findViewById(R.id.likeBtn);
@@ -64,34 +64,34 @@ public class CommentActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 final String currentUserId = mAuth.getCurrentUser().getUid();
-               // UploadPosts uploadPosts = new UploadPosts();
+                // UploadPosts uploadPosts = new UploadPosts();
                 //uploadPosts.getPostKey();
 
                 likeChecker=true;
                 databaseReference.child(key).child("Likes").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if (likeChecker) {
-                                //dislike
-                                if (dataSnapshot.child(currentUserId).exists()) {
-                                    databaseReference.child(key).child("Likes").child(currentUserId).removeValue();
-                                   // likeBtn.setImageDrawable(getDrawable(R.drawable.upvoteicon0));
+                        if (likeChecker) {
+                            //dislike
+                            if (dataSnapshot.child(currentUserId).exists()) {
+                                databaseReference.child(key).child("Likes").child(currentUserId).removeValue();
+                                // likeBtn.setImageDrawable(getDrawable(R.drawable.upvoteicon0));
                                     /*long count=dataSnapshot.getChildrenCount();
                                     likeCount.setText(count+" UpVotes");*/
-                                    likeChecker = false;
-                                } else {
-                                    //liking post
-                                    final HashMap<String, Object> hashmap = new HashMap<>();
-                                    hashmap.put("sender", ServerValue.TIMESTAMP);
-                                    databaseReference.child(key).child("Likes").child(currentUserId).setValue(hashmap);
+                                likeChecker = false;
+                            } else {
+                                //liking post
+                                final HashMap<String, Object> hashmap = new HashMap<>();
+                                hashmap.put("sender", ServerValue.TIMESTAMP);
+                                databaseReference.child(key).child("Likes").child(currentUserId).setValue(hashmap);
                                    /* likeBtn.setImageDrawable(getDrawable(R.drawable.upvoteicon1));
                                     long count=dataSnapshot.getChildrenCount();
                                     likeCount.setText(count+" UpVotes");*/
-                                    likeChecker = false;
+                                likeChecker = false;
 
-                                }
                             }
                         }
+                    }
 
 
                     @Override
@@ -101,24 +101,24 @@ public class CommentActivity extends AppCompatActivity {
             }
         });
 
-       /* commentSendBtn.setOnClickListener(new View.OnClickListener() {
+        commentSendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //final BlogPostId blogPostId = new BlogPostId();
-                final String textComent = commentText.getText().toString();
-                if (!textComent.isEmpty()) {
+                final String textComment = commentText.getText().toString();
+                if (!textComment.isEmpty()) {
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     final DatabaseReference myRef = database.getReference("Posts");
                     myRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for (DataSnapshot postchild : dataSnapshot.getChildren()) {
-                                String blogPostId = postchild.getKey();
-                                //String commentkey = postchild.child(commentId).child("Comments").getKey();
-                                Comment comment = new Comment(mAuth.getCurrentUser().getUid(), textComent);
-                                String key =  myRef.child(blogPostId).getKey();
-                                addComment(comment,key);
-                            }
+                            // for (DataSnapshot postchild : dataSnapshot.getChildren())
+                            // String blogPostId = postchild.getKey();
+                            // String commentkey = postchild.child(commentId).child("Comments").getKey();
+                            Comment comment = new Comment(mAuth.getCurrentUser().getUid(), textComment);
+                            String commentKey =  myRef.child(key).getKey();
+                            addComment(comment,commentKey);
+
 
                         }
 
@@ -126,9 +126,9 @@ public class CommentActivity extends AppCompatActivity {
                         public void onCancelled(@NonNull DatabaseError databaseError) {
 
                         }
-                        public void addComment(Comment comment,String key)
+                        public void addComment(Comment comment,String commentKey)
                         {
-                            myRef.child(key).child("Comments").push().setValue(comment).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            myRef.child(commentKey).child("Comments").push().setValue(comment).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     Toast.makeText(CommentActivity.this,"comment posted",Toast.LENGTH_SHORT).show();
@@ -140,34 +140,34 @@ public class CommentActivity extends AppCompatActivity {
 
                 }
             }
-        });*/
+        });
 
-        //showComment();
+        showComment();
     }
-   /* public void getBlogListId(String blogPostId)
-    {   this.blogPostId=blogPostId;}*/
-   void setBlogLikeBtn(String key){
-       FirebaseAuth mAuth;
-       mAuth=FirebaseAuth.getInstance();
-       final String currentUserId = mAuth.getCurrentUser().getUid();
-       databaseReference.child(key).child("Likes").child(currentUserId).addValueEventListener(new ValueEventListener() {
-           @Override
-           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               if(dataSnapshot.exists()){
-                   likeBtn.setImageDrawable(getDrawable(R.drawable.upvoteicon1));
-               }
-               else{
-                   likeBtn.setImageDrawable(getDrawable(R.drawable.upvoteicon0));
-               }
-           }
+    /* public void getBlogListId(String blogPostId)
+     {   this.blogPostId=blogPostId;}*/
+    void setBlogLikeBtn(String key){
+        FirebaseAuth mAuth;
+        mAuth=FirebaseAuth.getInstance();
+        final String currentUserId = mAuth.getCurrentUser().getUid();
+        databaseReference.child(key).child("Likes").child(currentUserId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    likeBtn.setImageDrawable(getDrawable(R.drawable.upvoteicon1));
+                }
+                else{
+                    likeBtn.setImageDrawable(getDrawable(R.drawable.upvoteicon0));
+                }
+            }
 
-           @Override
-           public void onCancelled(@NonNull DatabaseError databaseError) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-           }
-       });
+            }
+        });
 
-   }
+    }
     void setBlogLikeCount(String key){
 
         databaseReference.child(key).child("Likes").addValueEventListener(new ValueEventListener() {
@@ -187,30 +187,22 @@ public class CommentActivity extends AppCompatActivity {
     public void showComment()
     {
         final FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        //commentRecyclerView = findViewById(R.id.commentRecyclerView);
-        commentRecyclerView.setLayoutManager(new LinearLayoutManager(CommentActivity.this));
+        commentRecyclerView = findViewById(R.id.commentRecyclerView);
+        commentRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         commentRecyclerView.setHasFixedSize(true);
         if(mAuth.getCurrentUser()!=null)
         {
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-            DatabaseReference databaseReference = firebaseDatabase.getReference("Posts");
+            DatabaseReference databaseReference = firebaseDatabase.getReference("Posts").child(key);
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     commentList = new ArrayList<>();
-                    for(DataSnapshot comment : dataSnapshot.getChildren())
+                    for(DataSnapshot comment : dataSnapshot.child("Comments").getChildren())
                     {
-                            for(DataSnapshot comment1 : comment.getChildren()){
-                                if(comment.child("Comments").getKey().equals(comment1.child("Comments").getKey()))
-                                {
-                                    for (DataSnapshot comment2 : comment1.child("Comments").getChildren()) {
-                                        //String commentKey = comment1.getKey();
-                                        Comment commentPost = comment2.getValue(Comment.class);
-                                        commentList.add(commentPost);
-
-                                    }
-                                }
-                            }
+                        //String commentKey = comment1.getKey();
+                        Comment commentPost = comment.getValue(Comment.class);
+                        commentList.add(commentPost);
                     }
 
                     commentRecyclerAdapter = new CommentRecyclerAdapter(getApplicationContext(), commentList);

@@ -10,7 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
+        app:layout_constraintBottom_toTopOf="@+id/commentText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -149,6 +149,7 @@
                     tools:layout_editor_absoluteY="544dp" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/commentRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="8dp"
@@ -160,7 +161,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/commentSendBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -169,11 +170,11 @@
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editText"
+        app:layout_constraintStart_toEndOf="@+id/commentText"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/commentText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -182,7 +183,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/commentSendBtn"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />

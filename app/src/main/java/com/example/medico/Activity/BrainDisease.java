@@ -1,4 +1,4 @@
-package com.example.medico;
+package com.example.medico.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,9 +9,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.medico.R;
+import com.example.medico.Adapter.RecyclerViewAdapter;
+
 import java.util.ArrayList;
 
-public class MentalDisorder extends AppCompatActivity {
+public class BrainDisease extends AppCompatActivity {
 
     private static final String TAG="MainActivity";
 
@@ -21,7 +24,7 @@ public class MentalDisorder extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(MentalDisorder.this,HomeActivity.class));
+        startActivity(new Intent(BrainDisease.this, HomeActivity.class));
 
     }
 
@@ -29,10 +32,11 @@ public class MentalDisorder extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diseases);
+        setContentView(R.layout.activity_brain_disease);
+
         Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Mental Disorder Diseases");
+        getSupportActionBar().setTitle("Brain Diseases");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Log.d(TAG,"onCreate: started.");
@@ -42,9 +46,10 @@ public class MentalDisorder extends AppCompatActivity {
     private void initImageBitmaps(){
         Log.d(TAG,"initImageBitmaps: preparing bitmaps.");
 
-        mNames.add("Attention Deficit Hyperactivity Disorder");
-        mImages.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/diseasesimages%2Fadhd.jpg?alt=media&token=c42d0bbc-314d-47b7-939e-da47397d53bb");
-        mImageDiscription.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/DiseasesDiscription%2FADHD%20en.png?alt=media&token=f0dce4d4-bbb0-43bd-8caf-0efd65d80446");
+        mNames.add("Cerebral Palsy");
+        mImages.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/diseasesimages%2FBronchnopulmonary.png?alt=media&token=ff1d6b33-097f-4fac-8819-8e790822587a");
+        mImageDiscription.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/DiseasesDiscription%2FCerebral%20palsy%20en.png?alt=media&token=545accaf-6c25-48bf-925b-13e15f37302d");
+
         initRecyclerView();
     }
 

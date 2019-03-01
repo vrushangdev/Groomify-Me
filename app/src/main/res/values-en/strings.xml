@@ -65,6 +65,37 @@
     <string name="type_message">Type a message...</string>
 
     <string name="search">Search</string>
-
     <string name="profile">Profile</string>
+
+    <string name="equipments">Equipments</string>
+    <string name="preliminaries">Preliminaries</string>
+
+    //preliminaries
+    <string name="preliminaries_heading1">What does prematurity among child means?</string>
+    <string name="preliminaries_heading2">Symptoms</string>
+    <string name="preliminaries_content1">A premature birth is a birth that takes place more than three weeks before the baby\'s estimated due date. In other words, a premature birth is one that occurs before the start of the 37th week of pregnancy.
+Premature babies, especially those born very early, often have complicated medical problems. Typically, complications of prematurity vary. But the earlier your baby is born, the higher the risk of complications.
+Depending on how early a baby is born, he or she may be:\n
+\u2022	Late preterm, born between 34 and 36 completed weeks of pregnancy\n
+•	Moderately preterm, born between 32 and 34 weeks of pregnancy\n
+•	Very preterm, born at less than 32 weeks of pregnancy\n
+•	Extremely preterm, born at or before 25 weeks of pregnancy\n</string>
+    <string name="preliminaries_content2">• Small size, with a disproportionately large head\n
+• Sharper looking, less rounded features than a full-term baby\'s features, due to a lack of fat stores\n
+• Fine hair (lanugo) covering much of the body\n
+• Low body temperature, especially immediately after birth in the delivery room, due to a lack of stored body fat\n
+• Labored breathing or respiratory distress\n
+• Lack of reflexes for sucking and swallowing, leading to feeding difficulties</string>
+
+    //equipments
+    <string name="equipments_heading1">(1)Apena monitor-</string>
+    <string name="equipments_heading2">(2)Arterial Line- </string>
+    <string name="equipments_heading3">(3)Bililights- </string>
+    <string name="equipments_heading4">(4)Continuous Positive Airway Pressure (also called CPAP):- </string>
+
+    <string name="equipments_content1">A machine that detects when your baby stops breathing for a few seconds. An alarm goes off to let NICU staff know your baby has stopped breathing.</string>
+    <string name="equipments_content2">A thin tube that goes into your baby\’s artery to check his blood pressure and measure blood gases. An artery is a blood vessel that carries oxygen to all parts of your baby\’s body. Blood pressure is the force of blood that pushes against the walls of the arteries. Blood gases are acid, oxygen and carbon dioxide in your baby\’s blood.</string>
+    <string name="equipments_content3">Bright lights over a baby\’s incubator that treat jaundice. An incubator is a clear plastic bed that keeps your baby warm. Jaundice is when a baby\'s eyes and skin look yellow. A baby has jaundice when his liver isn\'t fully developed or isn\'t working. Treatment with bililights is also called phototherapy. Babies can have this treatment for 3 to 7 days.
+</string>
+    <string name="equipments_content4">A machine that sends air and oxygen to your baby\’s lungs through small tubes in his nose or windpipe (also called trachea).</string>
 </resources>
