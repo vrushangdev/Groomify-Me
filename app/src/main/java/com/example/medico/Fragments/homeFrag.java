@@ -7,10 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.medico.Activity.CommentActivity;
 import com.example.medico.Activity.HomeActivity;
 import com.example.medico.Adapter.BlogRecyclerAdapter;
 import com.example.medico.R;
-import com.example.medico.UploadPosts;
+import com.example.medico.Model.UploadPosts;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -59,7 +60,7 @@ public class homeFrag extends Fragment {
         blogRecyclerView = view.findViewById(R.id.blogRecyclerView);
         blogRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         blogRecyclerView.setHasFixedSize(true);
-
+        final CommentActivity id = new CommentActivity();
         if(mAuth.getCurrentUser()!=null) {
 
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -75,6 +76,7 @@ public class homeFrag extends Fragment {
                         String blogPostId = postsnap.getKey();
                         UploadPosts blogPost = postsnap.getValue(UploadPosts.class).withId(blogPostId);
                         bloglist.add(blogPost);
+                        //id.getBlogListId(blogPostId);
                     }
                     blogRecyclerAdapter = new BlogRecyclerAdapter(getActivity(), bloglist);
                     blogRecyclerView.setAdapter(blogRecyclerAdapter);

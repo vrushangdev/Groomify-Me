@@ -1,4 +1,4 @@
-package com.example.medico;
+package com.example.medico.Model;
 
 import com.example.medico.Model.BlogPostId;
 import com.google.firebase.database.ServerValue;

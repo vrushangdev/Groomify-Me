@@ -4,13 +4,10 @@ package com.example.medico.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.provider.Settings;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,16 +15,14 @@ import com.bumptech.glide.Glide;
 
 import com.example.medico.Activity.CommentActivity;
 import com.example.medico.R;
-import com.example.medico.UploadPosts;
+import com.example.medico.Model.UploadPosts;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashMap;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -84,8 +79,6 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
             //  blogPostId = blogList.get(position).BlogPostId;
             holder.postTitle.setText(blogList.get(position).getUploadTitleHindi());
         }
-
-
         Glide.with(mContext).load(blogList.get(position).getUploadImageUrl()).into(holder.imagePost);
         final UploadPosts uploadPosts=new UploadPosts();
         holder.imagePost.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +86,9 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, CommentActivity.class);
                 intent.putExtra("image_url",blogList.get(position).getUploadImageUrl());
+                intent.putExtra("title",blogList.get(position).getUploadTitle());
+                intent.putExtra("desc",blogList.get(position).getUploadSubject());
+                intent.putExtra("blogPostId",blogList.get(position).getPostKey());
                 mContext.startActivity(intent);
             }
         });
@@ -101,9 +97,9 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
         //long d = new Date(millisecond).getTime();
         // String dateString = DateFormat.format("MM/dd/yyyy",new Date()).toString();
         // holder.postDate.setText(dateString);
-        holder.setBlogLikeBtn(blogPostId);
+       // holder.setBlogLikeBtn(blogPostId);
         holder.setBlogLikeCount(blogPostId);
-        holder.blogLikeBtn.setOnClickListener(new View.OnClickListener() {
+        /*holder.blogLikeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -135,7 +131,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
                     }
                 });
             }
-        });
+        });*/
 
     }
 
@@ -148,7 +144,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView postTitle;
-        ImageButton imagePost;
+        ImageView imagePost;
         TextView postDate;
         private ImageView blogLikeBtn;
         private TextView blogLikeCount;
@@ -160,13 +156,13 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
             postTitle = itemView.findViewById(R.id.blogTitle);
             imagePost = itemView.findViewById(R.id.blogImage);
             //postDate = itemView.findViewById(R.id.blogdate);
-            blogLikeBtn = itemView.findViewById(R.id.blogLikeBtn);
-            blogLikeCount = itemView.findViewById(R.id.blogLikeCount);
+            //blogLikeBtn = itemView.findViewById(R.id.blogLikeBtn);
+            blogLikeCount = itemView.findViewById(R.id.likeCount);
             mAuth=FirebaseAuth.getInstance();
 
 
         }
-
+/*
         void setBlogLikeBtn(String blogPostId){
             databaseReference.child(blogPostId).child("Likes").child(mAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -185,7 +181,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
                 }
             });
 
-        }
+        }*/
         void setBlogLikeCount(String blogPostId){
 
             databaseReference.child(blogPostId).child("Likes").addValueEventListener(new ValueEventListener() {

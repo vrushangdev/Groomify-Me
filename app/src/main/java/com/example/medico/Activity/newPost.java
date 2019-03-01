@@ -1,14 +1,14 @@
-package com.example.medico;
+package com.example.medico.Activity;
 
 import android.Manifest;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.os.StrictMode;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -16,60 +16,29 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.android.volley.toolbox.StringRequest;
+import com.example.medico.Model.UploadPosts;
 import com.example.medico.Activity.HomeActivity;
+import com.example.medico.R;
+import com.example.medico.Translate;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.example.medico.Model.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.sql.Timestamp;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
 
 public class newPost extends AppCompatActivity {
 
@@ -82,28 +51,25 @@ public class newPost extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private FirebaseAuth mAuth;
     private Toolbar newPostToolbar;
-
+    private ProgressDialog dialog;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_new_post);
         newPostToolbar = findViewById(R.id.newPostToolbar);
         setSupportActionBar(newPostToolbar);
         setSupportActionBar(newPostToolbar);
         getSupportActionBar().setTitle(R.string.createnewpost);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-
-        StrictMode.setThreadPolicy(policy);
-
 
         storageReference = FirebaseStorage.getInstance().getReference().child("postImages");
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         mAuth = FirebaseAuth.getInstance();
+
         final String userId = mAuth.getCurrentUser().getUid();
+
         postImage = findViewById(R.id.blogImage);
         postTitle = findViewById(R.id.postTitle);
         postSubject = findViewById(R.id.postSubject);
@@ -114,7 +80,7 @@ public class newPost extends AppCompatActivity {
         postImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //storage permission
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
                     if (ContextCompat.checkSelfPermission(newPost.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -134,12 +100,13 @@ public class newPost extends AppCompatActivity {
                 }
             }
 
+            //image crop thay che ana thi.
             private void BringImagePicker() {
 
                 CropImage.activity()
                         .setGuidelines(CropImageView.Guidelines.ON)
-                        .setMinCropResultSize(512, 512)
-                        .setAspectRatio(1, 1)
+                        .setMinCropResultSize(900, 512)
+                        .setAspectRatio(16, 9)
                         .start(newPost.this);
             }
 
@@ -147,17 +114,12 @@ public class newPost extends AppCompatActivity {
         floatingPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Variabled to be added on clickinng of send button
-
-
                 String title = postTitle.getText().toString();
                 String subject = postSubject.getText().toString();
-
-
-
-                if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(title) && postImageUri != null) {
-                    // String randomName =
-
+                if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(subject) && postImageUri != null) {
+                    dialog = new ProgressDialog(newPost.this);
+                    dialog.setMessage("Posting ...");
+                    dialog.show();
                     final StorageReference filePath = storageReference.child(postImageUri.getLastPathSegment());
                     filePath.putFile(postImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -170,7 +132,7 @@ public class newPost extends AppCompatActivity {
                                     String title = postTitle.getText().toString();
                                     String summary = postSubject.getText().toString();
 
-                                    com.example.medico.UploadPosts uploadPosts = new com.example.medico.UploadPosts();
+                                    UploadPosts uploadPosts = new UploadPosts();
                                     uploadPosts.setUploadImageUrl(imageDownloadLink);
                                     uploadPosts.setUploadTitle(title);
                                     uploadPosts.setUploadSubject(summary);
@@ -183,19 +145,14 @@ public class newPost extends AppCompatActivity {
                                     trans.execute(uploadPosts);
 
 
-
                                 }
                             });
                         }
-
-
-
-
-
                     });
-
                 }
-
+                else {
+                    Toast.makeText(newPost.this,"Please Fill all the Fields",Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -203,23 +160,18 @@ public class newPost extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
                 postImageUri = result.getUri();
                 postImage.setImageURI(postImageUri);
-
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-
                 Exception error = result.getError();
-
             }
         }
-
     }
 
-    private class translateService extends AsyncTask<com.example.medico.UploadPosts, com.example.medico.UploadPosts, com.example.medico.UploadPosts>{
+    private class translateService extends AsyncTask<UploadPosts, UploadPosts, UploadPosts> {
         String toText;
         String title;
         String htitle;
@@ -227,38 +179,39 @@ public class newPost extends AppCompatActivity {
         String summary;
         String translatedTitle;
 
-        com.example.medico.UploadPosts uploadPosts = new com.example.medico.UploadPosts();
+        UploadPosts uploadPosts = new UploadPosts();
 
 
+      /*  @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+*/
 
         @Override
-        protected com.example.medico.UploadPosts doInBackground(com.example.medico.UploadPosts... uploadPosts) {
+        protected UploadPosts doInBackground(UploadPosts... uploadPosts) {
             translatedTitle = "Welcome To Medico";
-            com.example.medico.UploadPosts post = new com.example.medico.UploadPosts();
+            UploadPosts post = new UploadPosts();
 
-            for(com.example.medico.UploadPosts t:uploadPosts){
-                title=t.getUploadTitle();
-                summary=t.getUploadSubject();
-                post=t;
+            for (UploadPosts t : uploadPosts) {
+                title = t.getUploadTitle();
+                summary = t.getUploadSubject();
+                post = t;
             }
-            try{
-
-
-
+            try {
                 Translate translateRequest = new Translate();
-                String response = Translate.prettify(translateRequest.Post(title+","+summary));
-                String content=Translate.getTranslatedText(response);
-                String[] contents=content.split(",");
-                htitle=contents[0];
-                hsummary=contents[1];
+                String response = Translate.prettify(translateRequest.Post(title + "," + summary));
+                String content = Translate.getTranslatedText(response);
+                String[] contents = content.split(",");
+                htitle = contents[0];
+                hsummary = contents[1];
                 post.setUploadTitleHindi(htitle);
                 post.setUploadSubjectHindi(hsummary);
 
 
-
-
-                Log.d("newPost",response);
-                Log.d("newPost",content);
+                Log.d("newPost", response);
+                Log.d("newPost", content);
 
 
             } catch (Exception e) {
@@ -271,17 +224,16 @@ public class newPost extends AppCompatActivity {
 
 
         @Override
-        protected void onPostExecute(com.example.medico.UploadPosts post) {
+        protected void onPostExecute(UploadPosts post) {
             super.onPostExecute(post);
             addPost(post);
-
-
-
+            if (dialog.isShowing()) {
+                dialog.dismiss();
+            }
         }
-
     }
 
-    public void addPost(com.example.medico.UploadPosts uploadPosts) {
+    public void addPost(UploadPosts uploadPosts) {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Posts").push();
@@ -306,4 +258,5 @@ public class newPost extends AppCompatActivity {
 
 
     }
+
 }
