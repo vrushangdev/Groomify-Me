@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/MenuStyle">
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/heading1"
+                    android:text="(1)	Apena monitor-"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:paddingBottom="10dp"/>
+
+                <ImageView
+                    android:layout_width="375dp"
+                    android:layout_height="280dp"
+                    android:src="@drawable/apena_monitor"
+                    android:id="@+id/image_apenamonitor"
+                    android:layout_below="@+id/heading1"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/image_apenamonitor"
+                    android:textSize="15dp"
+                    android:id="@+id/text"
+                    android:text="A machine that detects when your baby stops breathing for a few seconds. An alarm goes off to let NICU staff know your baby has stopped breathing.
+"
+                    android:textColor="@color/colorAccent"/>
+                />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/heading2"
+                    android:text="(2)	Arterial Line- "
+                    android:textColor="@color/colorAccent"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:paddingBottom="10dp"/>
+
+                <ImageView
+                    android:layout_width="375dp"
+                    android:layout_height="280dp"
+                    android:src="@drawable/arterial_line"
+                    android:id="@+id/image_arterial_line"
+                    android:layout_below="@+id/heading2"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/image_arterial_line"
+                    android:textSize="15dp"
+                    android:id="@+id/text2"
+                    android:text="A thin tube that goes into your baby’s artery to check his blood pressure and measure blood gases. An artery is a blood vessel that carries oxygen to all parts of your baby’s body. Blood pressure is the force of blood that pushes against the walls of the arteries. Blood gases are acid, oxygen and carbon dioxide in your baby’s blood.
+"
+                    android:textColor="@color/colorAccent"/>
+                />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/heading3"
+                    android:text="(3)	Bililights- "
+                    android:textColor="@color/colorAccent"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:paddingBottom="10dp"/>
+
+                <ImageView
+                    android:layout_width="375dp"
+                    android:layout_height="280dp"
+                    android:src="@drawable/biliubin"
+                    android:id="@+id/image_bililights"
+                    android:layout_below="@+id/heading3"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/image_bililights"
+                    android:textSize="15dp"
+                    android:id="@+id/text3"
+                    android:text="Bright lights over a baby’s incubator that treat jaundice. An incubator is a clear plastic bed that keeps your baby warm. Jaundice is when a baby's eyes and skin look yellow. A baby has jaundice when his liver isn't fully developed or isn't working. Treatment with bililights is also called phototherapy. Babies can have this treatment for 3 to 7 days.
+"
+                    android:textColor="@color/colorAccent"/>
+                />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/heading4"
+                    android:text="(4)	continuous positive airway pressure (also called CPAP):-  "
+                    android:textColor="@color/colorAccent"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:paddingBottom="10dp"/>
+
+                <ImageView
+                    android:layout_width="375dp"
+                    android:layout_height="280dp"
+                    android:src="@drawable/cpap"
+                    android:id="@+id/image_cpap"
+                    android:layout_below="@+id/heading4"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/image_bililights"
+                    android:textSize="15dp"
+                    android:id="@+id/text4"
+                    android:text="A machine that sends air and oxygen to your baby’s lungs through small tubes in his nose or windpipe (also called trachea).
+"
+                    android:textColor="@color/colorAccent"/>
+                />
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+</LinearLayout>

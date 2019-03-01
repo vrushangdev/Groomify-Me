@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/MenuStyle">
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:id="@+id/btn_brain"
+        android:textColor="@color/design_default_color_primary_dark"
+
+        android:text="Brain Diseases             "
+        android:drawableLeft="@drawable/braindiseasesicon"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:textColor="@color/design_default_color_primary_dark"
+        android:id="@+id/btn_intestinal"
+        android:text="Intestinal Diseases            "
+        android:drawableLeft="@drawable/intestinediseasesicon"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:id="@+id/btn_mental"
+        android:textColor="@color/design_default_color_primary_dark"
+
+        android:text="Mental Disorder               "
+        android:drawableLeft="@drawable/mentaldisordericon"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:textColor="@color/design_default_color_primary_dark"
+
+        android:id="@+id/btn_vision"
+        android:text="Vision Diseases                 "
+        android:drawableLeft="@drawable/visiondiseaseicon"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:textColor="@color/design_default_color_primary_dark"
+
+        android:id="@+id/btn_lung"
+        android:text="Lung Diseases               "
+        android:drawableLeft="@drawable/lungsdiseaseicon"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:textColor="@color/design_default_color_primary_dark"
+
+        android:id="@+id/btn_infectous"
+        android:text="Infectous Diseases              "
+        android:drawableLeft="@drawable/infectiousdiseaseicon"/>
+
+
+
+</LinearLayout>
