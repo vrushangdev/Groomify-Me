@@ -57,9 +57,9 @@ public class newPost extends AppCompatActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_post);
-        newPostToolbar = findViewById(R.id.newPostToolbar);
+        newPostToolbar=findViewById(R.id.newPostToolbar);
         setSupportActionBar(newPostToolbar);
-        setSupportActionBar(newPostToolbar);
+       setSupportActionBar(newPostToolbar);
         getSupportActionBar().setTitle(R.string.createnewpost);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -74,7 +74,7 @@ public class newPost extends AppCompatActivity {
         postTitle = findViewById(R.id.postTitle);
         postSubject = findViewById(R.id.postSubject);
         floatingPost = findViewById(R.id.floatingPost);
-        postImage = findViewById(R.id.postCertificateImage);
+        postImage= findViewById(R.id.postCertificateImage);
         //progressBarImage=findViewById(R.id.progressBarImage);
 
         postImage.setOnClickListener(new View.OnClickListener() {
@@ -148,6 +148,12 @@ public class newPost extends AppCompatActivity {
                                 }
                             });
                         }
+
+
+
+
+                        }
+
                     });
                 }
                 else {
@@ -155,6 +161,8 @@ public class newPost extends AppCompatActivity {
                 }
             }
         });
+
+
     }
 
     @Override
@@ -181,6 +189,7 @@ public class newPost extends AppCompatActivity {
 
         UploadPosts uploadPosts = new UploadPosts();
 
+        }
 
       /*  @Override
         protected void onPreExecute() {
@@ -230,7 +239,11 @@ public class newPost extends AppCompatActivity {
             if (dialog.isShowing()) {
                 dialog.dismiss();
             }
+
+
+
         }
+
     }
 
     public void addPost(UploadPosts uploadPosts) {

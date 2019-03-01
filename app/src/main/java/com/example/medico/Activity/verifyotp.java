@@ -48,7 +48,7 @@ public class verifyotp extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (btnType == 0) {
-                    String phoneText=intent.getStringExtra("phoneNumber");
+                    String phoneText="+91"+intent.getStringExtra("phoneNumber");
                     PhoneAuthProvider.getInstance().verifyPhoneNumber(
                             phoneText,        // Phone number to verify
                             60,                 // Timeout duration
