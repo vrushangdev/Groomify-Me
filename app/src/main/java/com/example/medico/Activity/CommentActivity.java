@@ -64,34 +64,34 @@ public class CommentActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 final String currentUserId = mAuth.getCurrentUser().getUid();
-               // UploadPosts uploadPosts = new UploadPosts();
+                // UploadPosts uploadPosts = new UploadPosts();
                 //uploadPosts.getPostKey();
 
                 likeChecker=true;
                 databaseReference.child(key).child("Likes").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if (likeChecker) {
-                                //dislike
-                                if (dataSnapshot.child(currentUserId).exists()) {
-                                    databaseReference.child(key).child("Likes").child(currentUserId).removeValue();
-                                   // likeBtn.setImageDrawable(getDrawable(R.drawable.upvoteicon0));
+                        if (likeChecker) {
+                            //dislike
+                            if (dataSnapshot.child(currentUserId).exists()) {
+                                databaseReference.child(key).child("Likes").child(currentUserId).removeValue();
+                                // likeBtn.setImageDrawable(getDrawable(R.drawable.upvoteicon0));
                                     /*long count=dataSnapshot.getChildrenCount();
                                     likeCount.setText(count+" UpVotes");*/
-                                    likeChecker = false;
-                                } else {
-                                    //liking post
-                                    final HashMap<String, Object> hashmap = new HashMap<>();
-                                    hashmap.put("sender", ServerValue.TIMESTAMP);
-                                    databaseReference.child(key).child("Likes").child(currentUserId).setValue(hashmap);
+                                likeChecker = false;
+                            } else {
+                                //liking post
+                                final HashMap<String, Object> hashmap = new HashMap<>();
+                                hashmap.put("sender", ServerValue.TIMESTAMP);
+                                databaseReference.child(key).child("Likes").child(currentUserId).setValue(hashmap);
                                    /* likeBtn.setImageDrawable(getDrawable(R.drawable.upvoteicon1));
                                     long count=dataSnapshot.getChildrenCount();
                                     likeCount.setText(count+" UpVotes");*/
-                                    likeChecker = false;
+                                likeChecker = false;
 
-                                }
                             }
                         }
+                    }
 
 
                     @Override
@@ -144,30 +144,30 @@ public class CommentActivity extends AppCompatActivity {
 
         showComment();
     }
-   /* public void getBlogListId(String blogPostId)
-    {   this.blogPostId=blogPostId;}*/
-   void setBlogLikeBtn(String key){
-       FirebaseAuth mAuth;
-       mAuth=FirebaseAuth.getInstance();
-       final String currentUserId = mAuth.getCurrentUser().getUid();
-       databaseReference.child(key).child("Likes").child(currentUserId).addValueEventListener(new ValueEventListener() {
-           @Override
-           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               if(dataSnapshot.exists()){
-                   likeBtn.setImageDrawable(getDrawable(R.drawable.upvoteicon1));
-               }
-               else{
-                   likeBtn.setImageDrawable(getDrawable(R.drawable.upvoteicon0));
-               }
-           }
+    /* public void getBlogListId(String blogPostId)
+     {   this.blogPostId=blogPostId;}*/
+    void setBlogLikeBtn(String key){
+        FirebaseAuth mAuth;
+        mAuth=FirebaseAuth.getInstance();
+        final String currentUserId = mAuth.getCurrentUser().getUid();
+        databaseReference.child(key).child("Likes").child(currentUserId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    likeBtn.setImageDrawable(getDrawable(R.drawable.upvoteicon1));
+                }
+                else{
+                    likeBtn.setImageDrawable(getDrawable(R.drawable.upvoteicon0));
+                }
+            }
 
-           @Override
-           public void onCancelled(@NonNull DatabaseError databaseError) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-           }
-       });
+            }
+        });
 
-   }
+    }
     void setBlogLikeCount(String key){
 
         databaseReference.child(key).child("Likes").addValueEventListener(new ValueEventListener() {

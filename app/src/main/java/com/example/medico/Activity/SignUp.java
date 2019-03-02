@@ -13,6 +13,8 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -39,7 +41,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class SignUp extends AppCompatActivity {
     Button BtnSuSignUp;
     EditText FName, LName,ContactNo, Password, Email, CPassword;
-    TextView TvLogin;
+    TextView TvLogin,SignUp;
     boolean twice;
     boolean verified = false;
     Spinner language,category;
@@ -52,11 +54,14 @@ public class SignUp extends AppCompatActivity {
     DatabaseReference databaseUser;
     ProgressBar progressBar2;
     ProgressDialog dialog;
-
+    Animation frombottom,fromtop;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        frombottom = AnimationUtils.loadAnimation(this,R.anim.frombottom);
+        fromtop = AnimationUtils.loadAnimation(this,R.anim.fromtop);
         BtnSuSignUp = (Button) findViewById(R.id.BtnSuSignUp);
         FName = (EditText) findViewById(R.id.FName);
         LName = (EditText) findViewById(R.id.LName);
@@ -65,9 +70,23 @@ public class SignUp extends AppCompatActivity {
         Password = (EditText) findViewById(R.id.Password);
         Email = (EditText) findViewById(R.id.Email);
         TvLogin= (TextView) findViewById(R.id.TvLogin);
+        SignUp= (TextView) findViewById(R.id.SignUp);
         category=(Spinner)findViewById(R.id.category);
         language=(Spinner)findViewById(R.id.language);
         mAuth = FirebaseAuth.getInstance();
+
+        //Animation
+        TvLogin.startAnimation(frombottom);
+        BtnSuSignUp.startAnimation(frombottom);
+        SignUp.startAnimation(fromtop);
+        FName.startAnimation(fromtop);
+        LName.startAnimation(fromtop);
+        ContactNo.startAnimation(fromtop);
+        Email.startAnimation(fromtop);
+        Password.startAnimation(fromtop);
+        CPassword.startAnimation(fromtop);
+        category.startAnimation(fromtop);
+        language.startAnimation(fromtop);
 
         ArrayAdapter<String> newadapter = new ArrayAdapter<String>(
                 SignUp.this, R.layout.spinner_layout_test, getResources().getStringArray(R.array.lang));

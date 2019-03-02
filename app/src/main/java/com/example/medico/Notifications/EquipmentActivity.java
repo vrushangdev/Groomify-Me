@@ -1,13 +1,16 @@
-package com.example.medico;
+package com.example.medico.Notifications;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
-public class Posts extends AppCompatActivity {
+import com.example.medico.R;
+
+public class EquipmentActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_posts);
+        setContentView(R.layout.activity_equipments);
     }
 }

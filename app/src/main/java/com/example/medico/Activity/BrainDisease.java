@@ -14,17 +14,17 @@ import com.example.medico.Adapter.RecyclerViewAdapter;
 
 import java.util.ArrayList;
 
-public class DiseasesActivity extends AppCompatActivity {
+public class BrainDisease extends AppCompatActivity {
 
     private static final String TAG="MainActivity";
 
     private ArrayList<String> mNames=new ArrayList<>();
     private ArrayList<String> mImages=new ArrayList<>();
-    private ArrayList<String> mDiscripion=new ArrayList<>();
+    private ArrayList<String> mImageDiscription=new ArrayList<>();
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(DiseasesActivity.this, HomeActivity.class));
+        startActivity(new Intent(BrainDisease.this, HomeActivity.class));
 
     }
 
@@ -32,10 +32,11 @@ public class DiseasesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diseases);
+        setContentView(R.layout.activity_brain_disease);
+
         Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(R.string.diseases_title);
+        getSupportActionBar().setTitle("Brain Diseases");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Log.d(TAG,"onCreate: started.");
@@ -45,12 +46,9 @@ public class DiseasesActivity extends AppCompatActivity {
     private void initImageBitmaps(){
         Log.d(TAG,"initImageBitmaps: preparing bitmaps.");
 
-        mNames.add("disease1");
-        mImages.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/uploads%2F1551191297107.jpg?alt=media&token=25bc5662-49eb-4d0b-a3d0-91d9c3e13d83");
-        mDiscripion.add("bhai bhai bhai bhai bhai");
-        mNames.add("disease2");
-        mImages.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/uploads%2F1551191297107.jpg?alt=media&token=25bc5662-49eb-4d0b-a3d0-91d9c3e13d83");
-        mDiscripion.add("bhai bhai bhai bhai bhai");
+        mNames.add("Cerebral Palsy");
+        mImages.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/diseasesimages%2FBronchnopulmonary.png?alt=media&token=ff1d6b33-097f-4fac-8819-8e790822587a");
+        mImageDiscription.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/DiseasesDiscription%2FCerebral%20palsy%20en.png?alt=media&token=545accaf-6c25-48bf-925b-13e15f37302d");
 
         initRecyclerView();
     }
@@ -58,8 +56,8 @@ public class DiseasesActivity extends AppCompatActivity {
 
     private void initRecyclerView(){
         Log.d(TAG,"initRecyclerView: init recyclerview.");
-        RecyclerView recyclerView=findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter=new RecyclerViewAdapter(DiseasesActivity.this,mNames,mImages,mDiscripion);
+        RecyclerView recyclerView=findViewById(R.id.diseases_recycler_view);
+        RecyclerViewAdapter adapter=new RecyclerViewAdapter(this,mNames,mImages,mImageDiscription);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

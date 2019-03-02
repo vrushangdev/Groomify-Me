@@ -9,22 +9,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.medico.R;
 import com.example.medico.Adapter.RecyclerViewAdapter;
+import com.example.medico.R;
 
 import java.util.ArrayList;
 
-public class DiseasesActivity extends AppCompatActivity {
+public class VisionDiseases extends AppCompatActivity {
 
     private static final String TAG="MainActivity";
 
     private ArrayList<String> mNames=new ArrayList<>();
     private ArrayList<String> mImages=new ArrayList<>();
-    private ArrayList<String> mDiscripion=new ArrayList<>();
+    private ArrayList<String> mImageDiscription=new ArrayList<>();
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(DiseasesActivity.this, HomeActivity.class));
+        startActivity(new Intent(VisionDiseases.this, HomeActivity.class));
 
     }
 
@@ -32,10 +32,10 @@ public class DiseasesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diseases);
+        setContentView(R.layout.activity_vision_diseases);
         Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(R.string.diseases_title);
+        getSupportActionBar().setTitle("Vision Diseases");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Log.d(TAG,"onCreate: started.");
@@ -45,21 +45,17 @@ public class DiseasesActivity extends AppCompatActivity {
     private void initImageBitmaps(){
         Log.d(TAG,"initImageBitmaps: preparing bitmaps.");
 
-        mNames.add("disease1");
-        mImages.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/uploads%2F1551191297107.jpg?alt=media&token=25bc5662-49eb-4d0b-a3d0-91d9c3e13d83");
-        mDiscripion.add("bhai bhai bhai bhai bhai");
-        mNames.add("disease2");
-        mImages.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/uploads%2F1551191297107.jpg?alt=media&token=25bc5662-49eb-4d0b-a3d0-91d9c3e13d83");
-        mDiscripion.add("bhai bhai bhai bhai bhai");
-
+        mNames.add("Retinopathy of Prematurity");
+        mImages.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/diseasesimages%2Fretinopathy%20of%20prematurity.png?alt=media&token=90be815a-9554-4198-8c57-358e7ffdd3d5");
+        mImageDiscription.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/DiseasesDiscription%2FROP%20en.png?alt=media&token=76e7abfe-0cc2-494f-a6e1-f83535d9f9c7");
         initRecyclerView();
     }
 
 
     private void initRecyclerView(){
         Log.d(TAG,"initRecyclerView: init recyclerview.");
-        RecyclerView recyclerView=findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter=new RecyclerViewAdapter(DiseasesActivity.this,mNames,mImages,mDiscripion);
+        RecyclerView recyclerView=findViewById(R.id.diseases_recycler_view);
+        RecyclerViewAdapter adapter=new RecyclerViewAdapter(this,mNames,mImages,mImageDiscription);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

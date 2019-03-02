@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -22,9 +24,10 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LogIn extends AppCompatActivity {
     Button BtnSiSignIn;
     EditText SiEmail, SiPassword;
-    TextView TvRegister;
+    TextView TvRegister,loginTitle;
     TextView forgotpass;
     ProgressBar progressBar;
+    Animation frombottom,fromtop;
     ProgressDialog dialog;
     private FirebaseAuth mAuth;
     @Override
@@ -32,13 +35,24 @@ public class LogIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
+        frombottom = AnimationUtils.loadAnimation(this,R.anim.frombottom);
+        fromtop = AnimationUtils.loadAnimation(this,R.anim.fromtop);
         BtnSiSignIn = (Button) findViewById(R.id.BtnSiSignIn);
         SiEmail = (EditText) findViewById(R.id.SiEmail);
         SiPassword = (EditText) findViewById(R.id.SiPassword);
         TvRegister= (TextView) findViewById(R.id.TvRegister);
+        loginTitle= (TextView) findViewById(R.id.loginTitle);
         forgotpass = (TextView) findViewById(R.id.forgotpass);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();
+
+        loginTitle.startAnimation(fromtop);
+        SiEmail.startAnimation(fromtop);
+        SiPassword.startAnimation(fromtop);
+        forgotpass.startAnimation(frombottom);
+        BtnSiSignIn.startAnimation(frombottom);
+        TvRegister.startAnimation(frombottom);
+
         progressBar.setVisibility(View.INVISIBLE);
         BtnSiSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
