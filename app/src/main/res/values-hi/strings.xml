@@ -48,6 +48,10 @@
     <string name="chat">बातचीत</string>
     <string name="setting">सेटिंग्स</string>
     <string name="about">विषय</string>
+    <string name="equipments">उपकरणों</string>
+    <string name="preliminaries">प्रारंभिक जानकारी</string>
+    <string name="awareness_title">जागरूकता</string>
+    <string name="diseases_title">रोग</string>
 
     <string name="verify">सत्यापन</string>
     <string name="sendotp">OTP भेजें</string>
@@ -68,8 +72,6 @@
     <string name="search">खोज</string>
     <string name="profile">प्रोफाइल</string>
 
-    <string name="equipments">Equipments</string>
-    <string name="preliminaries">Preliminaries</string>
 
     //preliminaries
     <string name="preliminaries_heading1">बच्चे के बीच क्या अशुद्धता है?</string>
@@ -91,5 +93,21 @@
 </string>
     <string name="equipments_content4">एक मशीन जो आपके बच्चे के फेफड़ों में हवा या ऑक्सीजन उसकी नाक या विंडपाइप (जिसे ट्रेकिआ भी कहा जाता है) के माध्यम से भेजती है।</string>
 
-
+    //awareness
+    <string name="awareness_head">असामयिक बच्चों की देखभाल:-</string>
+    <string name="awareness_mainpara">\t \t आंकड़ों के सर्वेक्षण के अनुसार, यह निष्कर्ष निकाला गया है कि 100% गर्भवती महिलाओं में, उनमें से 70% लोग समय से पहले जन्म के बारे में अनजान हैं और उनके स्वास्थ्य के बारे में ध्यान नहीं रखते हैं; शिशुओं और माताओं दोनों में बीमारी के परिणामस्वरूप।
+ गर्भावस्था में समय से पहले जन्म लेने के बारे में निम्नलिखित बातों का ध्यान रखना चाहिए।\n
+1)दर्द के बारे में अज्ञानता के कारण\n
+2)उचित समय पर दवाओं से बचने के कारण\n
+3)अस्वास्थ्यकर आहार के कारण\n
+4)सौंदर्य प्रसाधनों के अत्यधिक उपयोग के कारण\n</string>
+    <string name="awareness_heading1">सही तापमान:-</string>
+    <string name="awareness_heading2">नियमित समय सारणी के बाद:-</string>
+    <string name="awareness_heading3">पालन ​​करें (नित्य) फीडिंग के संकेत: -</string>
+    <string name="awareness_para1">आपको यह सुनिश्चित करने की आवश्यकता है कि आप अपने बच्चे को ऐसे तापमान पर रखें जो आरामदायक और सुरक्षित हो। ऐसा करने का सबसे अच्छा तरीका आमतौर पर परतों के साथ होता है - उदाहरण के लिए, एक बनियान, एक नींद और कंबल या ज़िप-स्लीपिंग बैग आवश्यक के रूप में। आप किसी आइटम को आसानी से जोड़ या हटा सकते हैं जो इस बात पर निर्भर करता है कि परिवेश कितना गर्म या ठंडा है।</string>
+    <string name="awareness_para2">नियमित जांच कराएं\n
+छोटी-छोटी परेशानियों के लिए भी बाल रोग विशेषज्ञ\n
+टीके के साथ तारीख तक रखें\n
+खिलाने के बारे में निर्देशों का पालन करें\n</string>
+    <string name="awareness_para3">अस्पताल में, समय से पहले के बच्चे, उनके स्तर के आधार पर, सुरक्षित रूप से खाने के लिए चूसने, निगलने और सांस लेने का समन्वय करना सीखते हैं। उन शुरुआती दिनों में, पांच मिलीलीटर के छोटे फीडिंग - एक चम्मच के बराबर - घड़ी के आसपास हर तीन घंटे में विशिष्ट।</string>
 </resources>

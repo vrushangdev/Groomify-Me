@@ -23,7 +23,7 @@ public class AwarenessActivity extends AppCompatActivity {
 
         Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Awareness");
+        getSupportActionBar().setTitle(R.string.awareness_title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }

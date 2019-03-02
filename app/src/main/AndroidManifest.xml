@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
 
-    -<application android:windowSoftInputMode="stateVisible|adjustPan" android:theme="@style/AppTheme" android:supportsRtl="true" android:roundIcon="@mipmap/ic_launcher_round" android:label="@string/app_name" android:icon="@drawable/medicoicon" android:allowBackup="true" xmlns:tools="http://schemas.android.com/tools">
+    <application android:windowSoftInputMode="stateVisible|adjustPan" android:theme="@style/AppTheme" android:supportsRtl="true" android:roundIcon="@mipmap/ic_launcher_round" android:label="@string/app_name" android:icon="@drawable/medicoicon" android:allowBackup="true" xmlns:tools="http://schemas.android.com/tools">
 
     <activity android:name=".Activity.CommentActivity"/>
 
@@ -46,33 +46,53 @@
 
 
     <activity android:name=".Activity.DiseaseDescriptionActivity"/>
-b
+
     <activity android:name=".Activity.verifyotp"/>
 
-    <activity android:name=".Activity.settings" android:parentActivityName=".Activity.HomeActivity"/>
+    <activity android:name=".Activity.settings"
+        android:parentActivityName=".Activity.HomeActivity"/>
 
-    <activity android:name=".Activity.newPost" android:configChanges="orientation|keyboardHidden" android:parentActivityName=".Activity.HomeActivity" android:screenOrientation="portrait"/>
+    <activity android:name=".Activity.newPost"
+        android:configChanges="orientation|keyboardHidden"
+        android:parentActivityName=".Activity.HomeActivity"
+        android:screenOrientation="portrait"/>
 
     <activity android:name=".Activity.ChatActivity"
         android:configChanges="orientation|keyboardHidden"
         android:parentActivityName=".Activity.HomeActivity"
         android:screenOrientation="portrait" />
 
-    <activity android:name=".Activity.ForgotPassword" android:configChanges="orientation|keyboardHidden" android:screenOrientation="portrait"/>
+    <activity android:name=".Activity.ForgotPassword"
+        android:configChanges="orientation|keyboardHidden"
+        android:screenOrientation="portrait"/>
 
-    <activity android:name=".Activity.LogIn" android:windowSoftInputMode="stateVisible|adjustPan" android:configChanges="orientation|keyboardHidden" android:screenOrientation="portrait"/>
+    <activity android:name=".Activity.LogIn"
+        android:windowSoftInputMode="stateVisible|adjustPan"
+        android:configChanges="orientation|keyboardHidden"
+        android:screenOrientation="portrait"/>
 
-    <activity android:name=".Activity.MessageActivity" android:configChanges="orientation|keyboardHidden" android:screenOrientation="portrait"/>
+    <activity android:name=".Activity.MessageActivity"
+        android:windowSoftInputMode="stateVisible|adjustPan"
+        android:configChanges="orientation|keyboardHidden"
+        android:screenOrientation="portrait"/>
 
-    <activity android:name=".Activity.SignUp" android:windowSoftInputMode="stateVisible|adjustPan" android:configChanges="orientation|keyboardHidden" android:screenOrientation="portrait"/>
+    <activity android:name=".Activity.SignUp"
+        android:windowSoftInputMode="stateVisible|adjustPan"
+        android:configChanges="orientation|keyboardHidden" />
 
-    <activity android:name=".Activity.HomeActivity" android:theme="@style/AppTheme.NoActionBar" android:label="@string/title_activity_home" android:configChanges="orientation|keyboardHidden" android:screenOrientation="portrait"/>
+    <activity android:name=".Activity.HomeActivity"
+        android:theme="@style/AppTheme.NoActionBar"
+        android:label="@string/title_activity_home"
+        android:configChanges="orientation|keyboardHidden"
+        android:screenOrientation="portrait"/>
 
 
-    -<activity android:name=".MainActivity" android:configChanges="orientation|keyboardHidden" android:screenOrientation="portrait">
+    <activity android:name=".MainActivity"
+        android:configChanges="orientation|keyboardHidden"
+        android:screenOrientation="portrait">
 
 
-    -<intent-filter>
+    <intent-filter>
 
     <action android:name="android.intent.action.MAIN"/>
 
@@ -82,13 +102,18 @@ b
 
 </activity>
 
-    <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" android:theme="@style/Base.Theme.AppCompat" android:configChanges="orientation|keyboardHidden" android:screenOrientation="portrait"/>
+    <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+        android:theme="@style/Base.Theme.AppCompat"
+        android:configChanges="orientation|keyboardHidden"
+        android:screenOrientation="portrait"/>
 
 
-    -<service android:name=".Notifications.MyFirebaseIdService" android:exported="true" android:enabled="true">
+   <service android:name=".Notifications.MyFirebaseIdService"
+       android:exported="true"
+       android:enabled="true">
 
 
-    -<intent-filter>
+    <intent-filter>
 
     <action android:name="com.google.firebase.INSTACE_ID_EVENT"/>
 
@@ -97,10 +122,12 @@ b
 </service>
 
 
-    -<service android:name=".Notifications.MyFirebaseMessaging" android:exported="true" android:enabled="true">
+    <service android:name=".Notifications.MyFirebaseMessaging"
+        android:exported="true"
+        android:enabled="true">
 
 
-    -<intent-filter>
+    <intent-filter>
 
     <action android:name="com.google.firebase.MESSAGING_EVENT"/>
 

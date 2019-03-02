@@ -16,20 +16,20 @@
         <item
         android:id="@+id/nav_preliminaries"
         android:icon="@drawable/premilmicon"
-        android:title="Preliminaries" />
+        android:title="@string/preliminaries" />
 
         <item
             android:id="@+id/nav_awareness"
             android:icon="@drawable/awarenessicon"
-            android:title="Awareness" />
+            android:title="@string/awareness_title" />
         <item
             android:id="@+id/nav_diseases"
             android:icon="@drawable/diseaseicon"
-            android:title="Diseases" />
+            android:title="@string/diseases_title" />
         <item
             android:id="@+id/nav_equipments"
             android:icon="@drawable/usageicon"
-            android:title="Equipments" />
+            android:title="@string/equipments" />
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/settings"

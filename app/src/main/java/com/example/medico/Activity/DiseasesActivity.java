@@ -35,7 +35,7 @@ public class DiseasesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_diseases);
         Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Diseases");
+        getSupportActionBar().setTitle(R.string.diseases_title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Log.d(TAG,"onCreate: started.");
