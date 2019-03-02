@@ -1,3 +1,4 @@
+/*
 package com.example.medico.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -59,8 +60,9 @@ public class DiseasesActivity extends AppCompatActivity {
     private void initRecyclerView(){
         Log.d(TAG,"initRecyclerView: init recyclerview.");
         RecyclerView recyclerView=findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter=new RecyclerViewAdapter(DiseasesActivity.this,mNames,mImages,mDiscripion);
+        RecyclerViewAdapter adapter=new RecyclerViewAdapter(DiseasesActivity.this,mNames,mImages,mDiscripionEn,);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }
+*/

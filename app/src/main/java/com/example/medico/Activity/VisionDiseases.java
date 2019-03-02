@@ -20,8 +20,8 @@ public class VisionDiseases extends AppCompatActivity {
 
     private ArrayList<String> mNames=new ArrayList<>();
     private ArrayList<String> mImages=new ArrayList<>();
-    private ArrayList<String> mImageDiscription=new ArrayList<>();
-
+    private ArrayList<String> mImageDiscriptionEn=new ArrayList<>();
+    private ArrayList<String> mImageDiscriptionHi=new ArrayList<>();
     @Override
     public void onBackPressed() {
         startActivity(new Intent(VisionDiseases.this, HomeActivity.class));
@@ -47,7 +47,8 @@ public class VisionDiseases extends AppCompatActivity {
 
         mNames.add("Retinopathy of Prematurity");
         mImages.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/diseasesimages%2Fretinopathy%20of%20prematurity.png?alt=media&token=90be815a-9554-4198-8c57-358e7ffdd3d5");
-        mImageDiscription.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/DiseasesDiscription%2FROP%20en.png?alt=media&token=76e7abfe-0cc2-494f-a6e1-f83535d9f9c7");
+        mImageDiscriptionEn.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/DiseasesDiscription%2FROP%20en.png?alt=media&token=aec5fad8-7a45-499d-a04b-7d94e30df4dd");
+        mImageDiscriptionHi.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/DiseasesDiscription%2FROP%20hi.png?alt=media&token=dc537075-1e57-4fc2-bc4f-95c7f844240a");
         initRecyclerView();
     }
 
@@ -55,7 +56,7 @@ public class VisionDiseases extends AppCompatActivity {
     private void initRecyclerView(){
         Log.d(TAG,"initRecyclerView: init recyclerview.");
         RecyclerView recyclerView=findViewById(R.id.diseases_recycler_view);
-        RecyclerViewAdapter adapter=new RecyclerViewAdapter(this,mNames,mImages,mImageDiscription);
+        RecyclerViewAdapter adapter=new RecyclerViewAdapter(this,mNames,mImages,mImageDiscriptionEn,mImageDiscriptionHi);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

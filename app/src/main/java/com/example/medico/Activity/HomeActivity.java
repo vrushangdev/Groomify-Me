@@ -3,6 +3,7 @@ package com.example.medico.Activity;
         import android.content.Intent;
         import android.os.Bundle;
 
+        import com.example.medico.Fragments.ProfileFragment;
         import com.example.medico.Fragments.homeFrag;
         import com.example.medico.R;
         import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -10,6 +11,8 @@ package com.example.medico.Activity;
         import androidx.fragment.app.FragmentManager;
         import androidx.fragment.app.FragmentTransaction;
 
+        import android.os.Handler;
+        import android.util.Log;
         import android.view.View;
         import com.google.android.material.navigation.NavigationView;
         import androidx.core.view.GravityCompat;
@@ -20,13 +23,15 @@ package com.example.medico.Activity;
 
         import android.view.Menu;
         import android.view.MenuItem;
+        import android.widget.Toast;
 
         import com.google.firebase.auth.FirebaseAuth;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
+    boolean twice;
+    final String TAG=getClass().getName();
 
 
     @Override
@@ -61,14 +66,30 @@ public class HomeActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        Log.d(TAG,"click");
+        if(twice==true){
+            Intent i=new Intent(Intent.ACTION_MAIN);
+            i.addCategory(Intent.CATEGORY_HOME);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+            finish();
+            System.exit(0);
         }
+        //super.onBackPressed();
+        twice=true;
+        Log.d(TAG,"twice:"+twice);
+        Toast.makeText(this, "Press Back Again to Exit.",Toast.LENGTH_SHORT).show();
+        Handler h= new Handler();
+        h.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                twice=false;
+                Log.d(TAG,"twice:"+ twice);
+            }
+        },3000);
     }
 
     @Override
@@ -119,7 +140,12 @@ public class HomeActivity extends AppCompatActivity
         else if (id == R.id.nav_equipments) {
             startActivity(new Intent(HomeActivity.this, EquipmentsActivity.class));
 
-        } else if (id == R.id.nav_settings) {
+        }
+        /*else if (id == R.id.nav_upload_history) {
+            startActivity(new Intent(HomeActivity.this, UploadHistory.class));
+            ft.commit();
+        }*/
+        else if (id == R.id.nav_settings) {
             startActivity(new Intent(HomeActivity.this, settings.class));
             ft.commit();
         } else if (id == R.id.nav_about) {

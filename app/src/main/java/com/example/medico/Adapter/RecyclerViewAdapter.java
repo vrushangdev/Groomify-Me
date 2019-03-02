@@ -26,14 +26,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private ArrayList<String> mImageNames=new ArrayList<>();
     private ArrayList<String> mImages=new ArrayList<>();
-    private ArrayList<String> mImageDiscription=new ArrayList<>();
+    private ArrayList<String> mImageDiscriptionEn=new ArrayList<>();
+    private ArrayList<String> mImageDiscriptionHi=new ArrayList<>();
     private Context mContext;
 
-    public RecyclerViewAdapter(Context mContext,ArrayList<String> mImageNames,ArrayList<String> mImages , ArrayList<String> mImageDiscription) {
+    public RecyclerViewAdapter(Context mContext,ArrayList<String> mImageNames,ArrayList<String> mImages , ArrayList<String> mImageDiscriptionEn,ArrayList<String> mImageDiscriptionHi) {
         this.mImageNames = mImageNames;
         this.mImages=mImages;
         this.mContext = mContext;
-        this.mImageDiscription=mImageDiscription;
+        this.mImageDiscriptionEn=mImageDiscriptionEn;
+        this.mImageDiscriptionHi=mImageDiscriptionHi;
     }
 
     @NonNull
@@ -66,7 +68,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 Intent intent=new Intent(mContext, DiseaseDescriptionActivity.class);
                 intent.putExtra("image_url",mImages.get(position));
                 intent.putExtra("image_name",mImageNames.get(position));
-                intent.putExtra("image_discription_url",mImageDiscription.get(position));
+                intent.putExtra("image_discription_urlEn",mImageDiscriptionEn.get(position));
+                intent.putExtra("image_discription_urlHi",mImageDiscriptionHi.get(position));
                 mContext.startActivity(intent);
             }
         });
