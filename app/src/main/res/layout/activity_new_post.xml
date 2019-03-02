@@ -34,17 +34,17 @@
 
     <EditText
         android:id="@+id/postTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="360dp"
+        android:layout_height="67dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:textColorHint="#9D90D0"
         android:hint="@string/postTitle"
         android:inputType="textShortMessage"
+        android:textColorHint="#9D90D0"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/postCertificateImage" />
 
@@ -65,17 +65,33 @@
 
     <EditText
         android:id="@+id/postSubject"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="361dp"
+        android:layout_height="63dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:textColorHint="#9D90D0"
         android:hint="@string/postSubject"
         android:inputType="textMultiLine"
+        android:textColorHint="#9D90D0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/postTitle" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="58dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toTopOf="@+id/postTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/postCertificateImage"
+        app:srcCompat="@drawable/micicon" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

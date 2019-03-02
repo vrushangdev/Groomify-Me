@@ -8,6 +8,7 @@ package com.example.medico.Activity;
         import com.example.medico.R;
         import com.example.medico.Fragments.homeFrag;
         import com.example.medico.Activity.newPost;
+        import com.example.medico.myposts;
         import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
         import androidx.annotation.NonNull;
@@ -176,6 +177,8 @@ public class HomeActivity extends AppCompatActivity
             startActivity(new Intent(HomeActivity.this, settings.class));
             ft.commit();
         } else if (id == R.id.nav_about) {
+            startActivity(new Intent(HomeActivity.this, myposts.class));
+            ft.commit();
 
         } else if (id == R.id.nav_logut) {
             FirebaseAuth.getInstance().signOut();

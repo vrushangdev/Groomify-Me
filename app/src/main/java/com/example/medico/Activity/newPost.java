@@ -3,12 +3,15 @@ package com.example.medico.Activity;
 import android.Manifest;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +35,8 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Locale;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,9 +45,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 public class newPost extends AppCompatActivity {
+    private static final int REQ_CODE_SPEECH_INPUT = 100;
 
     private ImageView postImage;
     private EditText postTitle;
+    private ArrayList<String> resultVoice;
     private EditText postSubject;
     private FloatingActionButton floatingPost;
     private Uri postImageUri = null;
@@ -51,6 +58,9 @@ public class newPost extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Toolbar newPostToolbar;
     private ProgressDialog dialog;
+    private ImageView micImage;
+    private boolean isposttext;
+    private boolean issummarytext;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,7 +84,12 @@ public class newPost extends AppCompatActivity {
         postSubject = findViewById(R.id.postSubject);
         floatingPost = findViewById(R.id.floatingPost);
         postImage = findViewById(R.id.postCertificateImage);
+        micImage =  (ImageView) findViewById(R.id.imageView2);
+
         //progressBarImage=findViewById(R.id.progressBarImage);
+
+
+
 
         postImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,6 +124,21 @@ public class newPost extends AppCompatActivity {
                         .start(newPost.this);
             }
 
+        });
+
+        postTitle.setOnFocusChangeListener(new View.OnFocusChangeListener(){
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                isposttext=true;
+                issummarytext=false;
+            }
+        });
+        postSubject.setOnFocusChangeListener(new View.OnFocusChangeListener(){
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                isposttext=false;
+                issummarytext=true;
+            }
         });
         floatingPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,19 +184,42 @@ public class newPost extends AppCompatActivity {
                 }
             }
         });
+        micImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startVoiceInput();
+
+            }
+        });
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
                 postImageUri = result.getUri();
+
                 postImage.setImageURI(postImageUri);
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Exception error = result.getError();
             }
+
+        }
+        else if(resultCode==RESULT_OK && null!=data){
+            resultVoice = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            if(isposttext){
+                postTitle.setText(resultVoice.get(0));
+
+            }else if(issummarytext){
+                postSubject.setText(resultVoice.get(0));
+
+            }
+
         }
     }
 
@@ -257,5 +310,18 @@ public class newPost extends AppCompatActivity {
 
 
     }
+    private void startVoiceInput() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Hello, How can I help you?");
+
+        try {
+            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
+        } catch (ActivityNotFoundException a) {
+
+        }
+    }
+
 
 }
