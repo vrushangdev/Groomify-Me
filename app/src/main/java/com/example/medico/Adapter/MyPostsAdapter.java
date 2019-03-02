@@ -10,6 +10,7 @@ import com.example.medico.Model.MyPostModel;
 import com.example.medico.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class MyPostsAdapter extends RecyclerView.Adapter<MyPostsAdapter.MyViewHolder> {
     private LayoutInflater inflater;
-    private ArrayList<MyPostModel> imageModelArrayList;
+    private List<MyPostModel> imageModelArrayList;
 
 
     public MyPostsAdapter(Context ctx, ArrayList<MyPostModel> imageModelArrayList){
@@ -53,6 +54,7 @@ public class MyPostsAdapter extends RecyclerView.Adapter<MyPostsAdapter.MyViewHo
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         holder.time.setText(imageModelArrayList.get(position).getUploadTitle());
+        holder.summary.setText(imageModelArrayList.get(position).getUploadTitleHindi());
     }
 
     @Override
@@ -63,12 +65,13 @@ public class MyPostsAdapter extends RecyclerView.Adapter<MyPostsAdapter.MyViewHo
     class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView time;
-
+        TextView summary;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
             time = (TextView) itemView.findViewById(R.id.tvh);
+            summary = (TextView) itemView.findViewById(R.id.tvb);
 
         }
 

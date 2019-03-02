@@ -5,8 +5,12 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
+import android.util.Log;
 
 import com.example.medico.R;
+
+import java.util.Locale;
 
 public class PreliminariesActivity extends AppCompatActivity {
 
@@ -22,6 +26,7 @@ public class PreliminariesActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(R.string.preliminaries);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     @Override
@@ -29,4 +34,6 @@ public class PreliminariesActivity extends AppCompatActivity {
         startActivity(new Intent(PreliminariesActivity.this, HomeActivity.class));
 
     }
+
+
 }

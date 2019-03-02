@@ -4,6 +4,7 @@ package com.example.medico.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,6 +80,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
             //  blogPostId = blogList.get(position).BlogPostId;
             holder.postTitle.setText(blogList.get(position).getUploadTitleHindi());
         }
+        holder.userName.setText(blogList.get(position).getUploadId());
         Glide.with(mContext).load(blogList.get(position).getUploadImageUrl()).into(holder.imagePost);
         final UploadPosts uploadPosts=new UploadPosts();
         holder.imagePost.setOnClickListener(new View.OnClickListener() {
@@ -145,6 +147,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
 
         TextView postTitle;
         ImageView imagePost;
+        TextView userName;
         TextView postDate;
         private ImageView blogLikeBtn;
         private TextView blogLikeCount;
@@ -158,6 +161,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
             //postDate = itemView.findViewById(R.id.blogdate);
             //blogLikeBtn = itemView.findViewById(R.id.blogLikeBtn);
             blogLikeCount = itemView.findViewById(R.id.likeCount);
+            userName = itemView.findViewById(R.id.blogUserName);
             mAuth=FirebaseAuth.getInstance();
 
 
