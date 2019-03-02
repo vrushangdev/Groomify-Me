@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.medico">
 
-    <manifest package="com.example.medico" xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application xmlns:tools="http://schemas.android.com/tools"
         android:allowBackup="true"
@@ -72,14 +74,130 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <application xmlns:tools="http://schemas.android.com/tools"
+        android:allowBackup="true"
+        android:icon="@drawable/medicoicon"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:windowSoftInputMode="stateVisible|adjustPan">
+        <!--<activity android:name=".Activity.UploadHistory">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+        </activity>-->
+        <activity android:name=".Activity.CommentActivity" />
+        <activity
+            android:name=".Activity.AwarenessActivity"
+            android:parentActivityName=".Activity.HomeActivity" />
+        <activity
+            android:name=".Activity.doctorDetails"
+            android:configChanges="orientation|keyboardHidden" />
+        <activity
+            android:name=".Activity.PreliminariesActivity"
+            android:parentActivityName=".Activity.HomeActivity" />
+        <activity
+            android:name=".Activity.BrainDisease"
+            android:parentActivityName=".Activity.DiseasesType" />
+        <activity
+            android:name=".Activity.DiseasesType"
+            android:parentActivityName=".Activity.HomeActivity" />
+        <activity
+            android:name=".Activity.IntestinalDiseases"
+            android:parentActivityName=".Activity.DiseasesType" />
+        <activity
+            android:name=".Activity.MentalDisorder"
+            android:parentActivityName=".Activity.DiseasesType" />
+        <activity
+            android:name=".Activity.VisionDiseases"
+            android:parentActivityName=".Activity.DiseasesType" />
+        <activity
+            android:name=".Activity.LungDiseases"
+            android:parentActivityName=".Activity.DiseasesType" />
+        <activity
+            android:name=".Activity.InfectousDiseases"
+            android:parentActivityName=".Activity.DiseasesType" />
+        <activity
+            android:name=".Activity.EquipmentsActivity"
+            android:parentActivityName=".Activity.HomeActivity" />
+        <!--
+<android:hardwareAccelerated="false" />
+    <android:largeHeap="true">
+        -->
+        <activity android:name=".Activity.DiseaseDescriptionActivity"
+            android:parentActivityName=".Activity.DiseasesType"/>
+        <activity android:name=".Activity.verifyotp" />
+        <activity
+            android:name=".Activity.settings"
+            android:parentActivityName=".Activity.HomeActivity" />
+        <activity
+            android:name=".Activity.newPost"
+            android:configChanges="orientation|keyboardHidden"
+            android:parentActivityName=".Activity.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.ChatActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:parentActivityName=".Activity.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.ForgotPassword"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.LogIn"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+        <activity
+            android:name=".Activity.MessageActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activity.SignUp"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustPan" />
+        <activity
+            android:name=".Activity.HomeActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/title_activity_home"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.AppCompat" />
 
     <application android:windowSoftInputMode="stateVisible|adjustPan" android:theme="@style/AppTheme" android:supportsRtl="true" android:roundIcon="@mipmap/ic_launcher_round" android:label="@string/app_name" android:icon="@drawable/medicoicon" android:allowBackup="true" xmlns:tools="http://schemas.android.com/tools">
+        <service
+            android:name=".Notifications.MyFirebaseIdService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTACE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".Notifications.MyFirebaseMessaging"
+            android:enabled="true"
+            android:exported="true">
 
-    <activity android:name=".Activity.CommentActivity"/>
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
 
     <activity android:name=".Activity.AwarenessActivity"
         android:parentActivityName=".Activity.HomeActivity"/>

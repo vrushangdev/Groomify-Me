@@ -1,5 +1,6 @@
 package com.example.medico.Activity;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,14 +18,16 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
-
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.auth.PhoneAuthProvider;
 import java.util.concurrent.TimeUnit;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class verifyotp extends AppCompatActivity {
 
-    private EditText codeText;
+
+private EditText codeText;
     private Button sendBtn;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     private FirebaseAuth mAuth;
@@ -124,5 +127,11 @@ public class verifyotp extends AppCompatActivity {
                         }
                     }
                 });
-    }
+    }//*
+
+
+    //---------------------------------------------------------------------------------------------------------
+
+
 }
+

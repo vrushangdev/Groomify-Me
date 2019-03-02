@@ -20,8 +20,8 @@ public class MentalDisorder extends AppCompatActivity {
 
     private ArrayList<String> mNames=new ArrayList<>();
     private ArrayList<String> mImages=new ArrayList<>();
-    private ArrayList<String> mImageDiscription=new ArrayList<>();
-
+    private ArrayList<String> mImageDiscriptionEn=new ArrayList<>();
+    private ArrayList<String> mImageDiscriptionHi=new ArrayList<>();
     @Override
     public void onBackPressed() {
         startActivity(new Intent(MentalDisorder.this, HomeActivity.class));
@@ -47,7 +47,8 @@ public class MentalDisorder extends AppCompatActivity {
 
         mNames.add("Attention Deficit Hyperactivity Disorder");
         mImages.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/diseasesimages%2Fadhd.jpg?alt=media&token=c42d0bbc-314d-47b7-939e-da47397d53bb");
-        mImageDiscription.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/DiseasesDiscription%2FADHD%20en.png?alt=media&token=f0dce4d4-bbb0-43bd-8caf-0efd65d80446");
+        mImageDiscriptionEn.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/DiseasesDiscription%2FADHD%20en.png?alt=media&token=b4e93e19-f8b3-4cae-9878-995acc9f7969");
+        mImageDiscriptionHi.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/DiseasesDiscription%2FADHD%20hi.png?alt=media&token=2c56cc92-134b-4b5c-803c-65007336abc1");
         initRecyclerView();
     }
 
@@ -55,7 +56,7 @@ public class MentalDisorder extends AppCompatActivity {
     private void initRecyclerView(){
         Log.d(TAG,"initRecyclerView: init recyclerview.");
         RecyclerView recyclerView=findViewById(R.id.diseases_recycler_view);
-        RecyclerViewAdapter adapter=new RecyclerViewAdapter(this,mNames,mImages,mImageDiscription);
+        RecyclerViewAdapter adapter=new RecyclerViewAdapter(this,mNames,mImages,mImageDiscriptionEn,mImageDiscriptionHi);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

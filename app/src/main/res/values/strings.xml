@@ -102,6 +102,7 @@ Depending on how early a baby is born, he or she may be:\n
     <string name="equipments_content2">A thin tube that goes into your baby\’s artery to check his blood pressure and measure blood gases. An artery is a blood vessel that carries oxygen to all parts of your baby\’s body. Blood pressure is the force of blood that pushes against the walls of the arteries. Blood gases are acid, oxygen and carbon dioxide in your baby\’s blood.</string>
     <string name="equipments_content3">Bright lights over a baby\’s incubator that treat jaundice. An incubator is a clear plastic bed that keeps your baby warm. Jaundice is when a baby\'s eyes and skin look yellow. A baby has jaundice when his liver isn\'t fully developed or isn\'t working. Treatment with bililights is also called phototherapy. Babies can have this treatment for 3 to 7 days.
 </string>
+    <string name="equipments_content4">A machine that sends air and oxygen to your baby\’s lungs through small tubes in his nose or windpipe (also called trachea).</string>
         <string name="equipments_content4">A machine that sends air and oxygen to your baby\’s lungs through small tubes in his nose or windpipe (also called trachea).</string>
 
     //awareness

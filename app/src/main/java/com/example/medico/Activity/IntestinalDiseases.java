@@ -20,7 +20,8 @@ public class IntestinalDiseases extends AppCompatActivity {
 
     private ArrayList<String> mNames=new ArrayList<>();
     private ArrayList<String> mImages=new ArrayList<>();
-    private ArrayList<String> mImageDiscription=new ArrayList<>();
+    private ArrayList<String> mImageDiscriptionEn=new ArrayList<>();
+    private ArrayList<String> mImageDiscriptionHi=new ArrayList<>();
 
     @Override
     public void onBackPressed() {
@@ -46,9 +47,10 @@ public class IntestinalDiseases extends AppCompatActivity {
     private void initImageBitmaps(){
         Log.d(TAG,"initImageBitmaps: preparing bitmaps.");
 
-        mNames.add("Cerebral Palsy");
+        mNames.add("Necrotizing Entercolitis");
         mImages.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/diseasesimages%2FNecrotizing%20entercolitics.png?alt=media&token=d2b16735-e648-4fa9-a841-340a0b74134d");
-        mImageDiscription.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/DiseasesDiscription%2FNEC%20en.png?alt=media&token=a5fb94c6-ed99-4b0b-9497-d79e560da597");
+        mImageDiscriptionEn.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/DiseasesDiscription%2FNEC%20en.png?alt=media&token=67261962-cc16-40fc-94ed-efe935bcf27c");
+        mImageDiscriptionHi.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/DiseasesDiscription%2FNEC%20hi.png?alt=media&token=597c14bd-f0da-495d-9ed7-ca9d9a0121c3");
 
         initRecyclerView();
     }
@@ -57,7 +59,7 @@ public class IntestinalDiseases extends AppCompatActivity {
     private void initRecyclerView(){
         Log.d(TAG,"initRecyclerView: init recyclerview.");
         RecyclerView recyclerView=findViewById(R.id.diseases_recycler_view);
-        RecyclerViewAdapter adapter=new RecyclerViewAdapter(this,mNames,mImages,mImageDiscription);
+        RecyclerViewAdapter adapter=new RecyclerViewAdapter(this,mNames,mImages,mImageDiscriptionEn,mImageDiscriptionHi);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

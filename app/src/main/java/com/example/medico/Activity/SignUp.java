@@ -142,11 +142,8 @@ public class SignUp extends AppCompatActivity {
                     ContactNo.setError("Contact Required");
                     dialog.dismiss();
                     return;
-                } else if (!isContactNoValid(ContactNo.getText().toString().trim())) {
-                    Toast.makeText(getApplicationContext(), "ContactNo invalid..!!", Toast.LENGTH_SHORT).show();
-                    ContactNo.setError("Contact Invalid");
-                    return;
-                } else if (Email.getText().toString().isEmpty()) {
+                }
+                 else if (Email.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Email Required..!!", Toast.LENGTH_SHORT).show();
                     Email.setError("Email Required");
                     dialog.dismiss();
@@ -241,12 +238,26 @@ public class SignUp extends AppCompatActivity {
                 startActivity(new Intent(SignUp.this, LogIn.class));
             }
         });
-       /* BtnSuCancel.setOnClickListener(new View.OnClickListener() {
+       /* public static boolean isContactNoValid(String ConnNo)
+        {
+            String regExpn="\\d{10}";//regEx for contact no.
+
+            CharSequence inputStr=ConnNo;//to convert string into character sequence.
+            Pattern pattern = Pattern.compile(regExpn,Pattern.CASE_INSENSITIVE);
+            Matcher matcher= pattern.matcher(inputStr);
+            if(matcher.matches())
+
+                return true;
+
+            else
+                return false;
+        }*/
+       /*//* BtnSuCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CleanEditText();
             }
-        });*/
+        });*//*
 
         language.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -286,26 +297,13 @@ public class SignUp extends AppCompatActivity {
     }
     //String user= mAuth.getCurrentUser().getUid();
     //String user= mAuth.getCurrentUser().getUid();
-  /*  public void insert_db(String fName,String lName,String mid,String email){
+  *//*  public void insert_db(String fName,String lName,String mid,String email){
         String id= mAuth.getCurrentUser().getUid();
         User user_db = new User(fName,lName,mid,email,id,"default","offline");
         databaseUser.child(id).setValue(user_db);
-    }*/
+    }*//*
 
-      public static boolean isContactNoValid(String ConnNo)
-      {
-          String regExpn="\\d{10}";//regEx for contact no.
 
-          CharSequence inputStr=ConnNo;//to convert string into character sequence.
-          Pattern pattern = Pattern.compile(regExpn,Pattern.CASE_INSENSITIVE);
-          Matcher matcher= pattern.matcher(inputStr);
-          if(matcher.matches())
-
-              return true;
-
-          else
-              return false;
-      }
     public void CleanEditText()
     {
         FName.setText("");
@@ -314,7 +312,7 @@ public class SignUp extends AppCompatActivity {
         Email.setText("");
         Password.setText("");
     }
-    /* @Override
+    *//* @Override
      protected void onStart(){
 
          SignUp.super.onStart();
@@ -342,7 +340,7 @@ public class SignUp extends AppCompatActivity {
 
              }
          });
-     }*/
+     }*//*
     @Override
     public void onBackPressed() {
         Log.d(TAG,"click");
@@ -367,5 +365,11 @@ public class SignUp extends AppCompatActivity {
             }
         },3000);
     }
-
 }
+
+
+
+
+
+
+*/}}

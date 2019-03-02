@@ -1,5 +1,6 @@
 package com.example.medico.Activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -18,32 +19,42 @@ public class  DiseaseDescriptionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
 
-       /* Toolbar toolbar=findViewById(R.id.toolbar);
+        Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Disease");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getIncomingIntent();
     }
 
     private void getIncomingIntent(){
-        if (getIntent().hasExtra("image_url") && getIntent().hasExtra("image_name") && getIntent().hasExtra("image_discription_url") ) {
+        if (getIntent().hasExtra("image_url") && getIntent().hasExtra("image_name") && getIntent().hasExtra("image_discription_urlEn") && getIntent().hasExtra("image_discription_urlHi") ) {
 
             String imageUrl=getIntent().getStringExtra("image_url");
             String imageName=getIntent().getStringExtra("image_name");
-            String imageDiscription=getIntent().getStringExtra("image_discription_url");
-            setImage(imageUrl,imageName,imageDiscription);
+            String imageDiscriptionEn=getIntent().getStringExtra("image_discription_urlEn");
+            String imageDiscriptionHi=getIntent().getStringExtra("image_discription_urlHi");
+            setImage(imageUrl,imageName,imageDiscriptionEn,imageDiscriptionHi);
         }
     }
 
-    private void setImage(String imageUrl,String imageName,String imageDiscription){
+    private void setImage(String imageUrl,String imageName,String imageDiscriptionEn,String imageDiscriptionHi){
 
         TextView name=findViewById(R.id.disease_title);
+        SharedPreferences prefs = DiseaseDescriptionActivity.this.getSharedPreferences("pref",MODE_PRIVATE);
+        String lang = prefs.getString("lang","en");
         name.setText(imageName);
         ImageView image=findViewById(R.id.disease_image);
         Glide.with(this).asBitmap().load(imageUrl).into(image);
         ImageView image2=findViewById(R.id.disease_discription_image);
-        Glide.with(this).asBitmap().load(imageDiscription).into(image2);
+        if(lang.equals("en")){
+            Glide.with(this).asBitmap().load(imageDiscriptionEn).into(image2);
+        }else if(lang.equals("hi")){
+            Glide.with(this).asBitmap().load(imageDiscriptionHi).into(image2);
+        }
+
+
+
 
     }
 

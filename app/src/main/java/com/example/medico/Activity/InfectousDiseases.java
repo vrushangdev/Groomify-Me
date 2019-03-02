@@ -20,8 +20,8 @@ public class InfectousDiseases extends AppCompatActivity {
 
     private ArrayList<String> mNames=new ArrayList<>();
     private ArrayList<String> mImages=new ArrayList<>();
-    private ArrayList<String> mImageDiscription=new ArrayList<>();
-
+    private ArrayList<String> mImageDiscriptionEn=new ArrayList<>();
+    private ArrayList<String> mImageDiscriptionHi=new ArrayList<>();
     @Override
     public void onBackPressed() {
         startActivity(new Intent(InfectousDiseases.this, HomeActivity.class));
@@ -47,7 +47,9 @@ public class InfectousDiseases extends AppCompatActivity {
 
         mNames.add("Sepsis");
         mImages.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/diseasesimages%2Fsnepsis.jpg?alt=media&token=20b80e82-fc0c-4291-bc44-c8eddc34bf6d");
-        mImageDiscription.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/DiseasesDiscription%2FSepsis%20en.png?alt=media&token=ebc81bd9-29bd-43e2-b76c-8a226c616983");
+        mImageDiscriptionEn.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/DiseasesDiscription%2FSepsis%20en.png?alt=media&token=8a9cf847-a447-4210-9efe-02d35558c8d9");
+        mImageDiscriptionHi.add("https://firebasestorage.googleapis.com/v0/b/medico-5e7ec.appspot.com/o/DiseasesDiscription%2FSepsis%20hi.png?alt=media&token=d6cfd88a-3891-455b-8864-bf50a69b5db8");
+
 
         initRecyclerView();
     }
@@ -56,7 +58,7 @@ public class InfectousDiseases extends AppCompatActivity {
     private void initRecyclerView(){
         Log.d(TAG,"initRecyclerView: init recyclerview.");
         RecyclerView recyclerView=findViewById(R.id.diseases_recycler_view);
-        RecyclerViewAdapter adapter=new RecyclerViewAdapter(this,mNames,mImages,mImageDiscription);
+        RecyclerViewAdapter adapter=new RecyclerViewAdapter(this,mNames,mImages,mImageDiscriptionEn,mImageDiscriptionHi);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
