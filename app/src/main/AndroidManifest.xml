@@ -15,7 +15,8 @@
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="stateVisible|adjustPan">
         <activity android:name=".Activity.BabyDetailsActivity"></activity>
-        <activity android:name=".myposts" />
+        <activity android:name=".myposts"
+            android:parentActivityName=".Activity.HomeActivity"/>
         <!--
 <activity android:name=".Activity.UploadHistory">
 
@@ -87,6 +88,7 @@
             android:windowSoftInputMode="stateVisible|adjustPan" />
         <activity
             android:name=".Activity.MessageActivity"
+            android:parentActivityName=".Activity.ChatActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity

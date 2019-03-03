@@ -5,6 +5,8 @@ android:layout_height="match_parent"
 android:background="#FFF"
 android:orientation="vertical" >
 
+
+
 <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/blogRecyclerView"
     android:layout_width="match_parent"
