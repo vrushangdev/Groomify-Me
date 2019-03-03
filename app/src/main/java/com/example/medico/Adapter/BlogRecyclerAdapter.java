@@ -29,6 +29,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -80,7 +81,39 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
             //  blogPostId = blogList.get(position).BlogPostId;
             holder.postTitle.setText(blogList.get(position).getUploadTitleHindi());
         }
+
+        final String userUploadId =blogList.get(position).getUploadId().toString();
         holder.userName.setText(blogList.get(position).getUploadId());
+       DatabaseReference myref = firebaseDatabase.getReference("user_data");
+       myref.addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+               for(DataSnapshot ds :dataSnapshot.getChildren()){
+                   if(ds.getValue().toString().contains(userUploadId)){
+                      String name= ds.child("fName").getValue().toString();
+                      String url =ds.child("imageUrl").getValue().toString();
+                      holder.userName.setText(name);
+
+                      if(url.contains("default")){
+                          Glide.with(mContext).load(R.drawable.medicologo).into(holder.blogUserImage);
+
+                      }
+                      else {
+                          Glide.with(mContext).load(url).into(holder.blogUserImage);
+
+                      }
+
+                   }
+
+               }
+           }
+
+           @Override
+           public void onCancelled(@NonNull DatabaseError databaseError) {
+
+           }
+       });
+
         Glide.with(mContext).load(blogList.get(position).getUploadImageUrl()).into(holder.imagePost);
         final UploadPosts uploadPosts=new UploadPosts();
         holder.imagePost.setOnClickListener(new View.OnClickListener() {
@@ -152,6 +185,9 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
         private ImageView blogLikeBtn;
         private TextView blogLikeCount;
         ConstraintLayout parent;
+        CircleImageView blogUserImage;
+        TextView blogUserName;
+
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -161,8 +197,11 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
             //postDate = itemView.findViewById(R.id.blogdate);
             //blogLikeBtn = itemView.findViewById(R.id.blogLikeBtn);
             blogLikeCount = itemView.findViewById(R.id.likeCount);
+            blogUserImage=itemView.findViewById(R.id.blogUserImage);
             userName = itemView.findViewById(R.id.blogUserName);
+            blogUserName = itemView.findViewById(R.id.blogUserName);
             mAuth=FirebaseAuth.getInstance();
+
 
 
         }

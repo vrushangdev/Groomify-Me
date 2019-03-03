@@ -47,6 +47,7 @@ public class CategoryFrag extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_category, container, false);
     }
@@ -70,6 +71,7 @@ public class CategoryFrag extends Fragment {
         nutrients = view.findViewById(R.id.nutrients);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference=firebaseDatabase.getReference("Posts");
+
 
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

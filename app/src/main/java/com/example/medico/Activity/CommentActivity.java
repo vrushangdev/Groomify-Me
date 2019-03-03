@@ -29,6 +29,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,6 +44,7 @@ public class CommentActivity extends AppCompatActivity {
     public String key;
     private CommentRecyclerAdapter commentRecyclerAdapter;
     ImageView likeBtn;
+    TextView numberOfComments;
     Boolean likeChecker = false;
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
@@ -54,6 +57,7 @@ public class CommentActivity extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference("Posts");
         commentSendBtn = findViewById(R.id.commentSendBtn);
         commentText = findViewById(R.id.commentText);
+        numberOfComments=findViewById(R.id.numberOfComments);
         likeCount = findViewById(R.id.likeCount);
         final FirebaseAuth mAuth = FirebaseAuth.getInstance();
         likeBtn = findViewById(R.id.likeBtn);
@@ -204,7 +208,8 @@ public class CommentActivity extends AppCompatActivity {
                                         Comment commentPost = comment.getValue(Comment.class);
                                         commentList.add(commentPost);
                     }
-
+                    TextView comments = (TextView)findViewById(R.id.numberOfComments);
+                    comments.setText(String.valueOf(commentList.size())+" comments");
                     commentRecyclerAdapter = new CommentRecyclerAdapter(getApplicationContext(), commentList);
                     commentRecyclerView.setAdapter(commentRecyclerAdapter);
                 }

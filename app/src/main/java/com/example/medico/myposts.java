@@ -9,6 +9,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.os.Bundle;
 
+import com.example.medico.Activity.EditPostActivity;
 import com.example.medico.Activity.HomeActivity;
 import com.example.medico.Adapter.MyPostsAdapter;
 import com.example.medico.Model.BlogPostId;
@@ -70,6 +71,7 @@ public class myposts extends AppCompatActivity {
                     String key =postSnapshot.child("postKey").getValue().toString();
                     String uploadId = postSnapshot.child("uploadId").getValue().toString();
                     String uploadTitle = postSnapshot.child("uploadTitle").getValue().toString();
+                    String url = postSnapshot.child("uploadImageUrl").getValue().toString();
 
                     Log.d("Myposts", "Value is: " +currentUserId+"\t\t"+uploadId );
                     if(currentUserId.equals(uploadId)){
@@ -77,6 +79,7 @@ public class myposts extends AppCompatActivity {
                         model.setUploadTitle(uploadTitle);
                         model.setPostKey(key);
                         model.setUploadId(uploadId);
+
 
 
                         mypostArrayList.add(model);
@@ -94,7 +97,6 @@ public class myposts extends AppCompatActivity {
 
 
                 MyPostModel value = dataSnapshot.getValue(MyPostModel.class);
-                Log.d("Myposts", "Value is: " + value.getPostKey());
             }
 
             @Override
@@ -151,7 +153,7 @@ public class myposts extends AppCompatActivity {
                 else if(direction == ItemTouchHelper.RIGHT){
                     final MyPostModel deletedModel = mypostArrayList.get(position);
                     final String blogid = deletedModel.getPostKey();
-                    Intent i = new Intent(myposts.this, HomeActivity.class);
+                    Intent i = new Intent(myposts.this, EditPostActivity.class);
                     String strName = blogid;
                     i.putExtra("BLOG_POST_ID", strName);
                     startActivity(i);
@@ -190,8 +192,8 @@ public class myposts extends AppCompatActivity {
                         p.setColor(Color.parseColor("#388E3C"));
                         RectF background = new RectF((float) itemView.getLeft(), (float) itemView.getTop(), dX,(float) itemView.getBottom());
                         c.drawRect(background,p);
-                        icon = BitmapFactory.decodeResource(getResources(), R.drawable.deleteicon);
-                        RectF icon_dest = new RectF((float) itemView.getLeft() + width ,(float) itemView.getTop() + width,(float) itemView.getLeft()+ 2*width,(float)itemView.getBottom() - width);
+                        icon = BitmapFactory.decodeResource(getResources(), R.drawable.btnsend);
+                        RectF icon_dest = new RectF((float) itemView.getLeft() + 2*width ,(float) itemView.getTop() + width,(float) itemView.getLeft()+ width,(float)itemView.getBottom() - width);
                         c.drawBitmap(icon,null,icon_dest,p);
                     } else {
                         p.setColor(Color.parseColor("#D32F2F"));

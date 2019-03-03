@@ -4,8 +4,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.medico.Model.MyPostModel;
 import com.example.medico.R;
 
@@ -20,12 +22,14 @@ import androidx.recyclerview.widget.RecyclerView;
 public class MyPostsAdapter extends RecyclerView.Adapter<MyPostsAdapter.MyViewHolder> {
     private LayoutInflater inflater;
     private List<MyPostModel> imageModelArrayList;
+    private Context mContext;
 
 
     public MyPostsAdapter(Context ctx, ArrayList<MyPostModel> imageModelArrayList){
 
         inflater = LayoutInflater.from(ctx);
         this.imageModelArrayList = imageModelArrayList;
+        this.mContext=ctx;
     }
 
     public void removeItem(int position) {
@@ -54,7 +58,9 @@ public class MyPostsAdapter extends RecyclerView.Adapter<MyPostsAdapter.MyViewHo
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         holder.time.setText(imageModelArrayList.get(position).getUploadTitle());
-        holder.summary.setText(imageModelArrayList.get(position).getUploadTitleHindi());
+        holder.summary.setText(imageModelArrayList.get(position).getUploadSubject());
+        Glide.with(mContext).load(imageModelArrayList.get(position).getUploadImageUrl())
+                .into(holder.myPostImage);
     }
 
     @Override
@@ -66,12 +72,14 @@ public class MyPostsAdapter extends RecyclerView.Adapter<MyPostsAdapter.MyViewHo
 
         TextView time;
         TextView summary;
+        ImageView myPostImage;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
             time = (TextView) itemView.findViewById(R.id.tvh);
             summary = (TextView) itemView.findViewById(R.id.tvb);
+            myPostImage=(ImageView)itemView.findViewById(R.id.imageviewmyposts);
 
         }
 

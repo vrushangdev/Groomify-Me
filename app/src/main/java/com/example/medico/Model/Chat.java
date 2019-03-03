@@ -6,6 +6,7 @@ public class Chat {
     private String receiver;
     private String message;
     private boolean isseen;
+    private  String ReportImage;
 
     public boolean isIsseen() {
         return isseen;
@@ -15,11 +16,23 @@ public class Chat {
         this.isseen = isseen;
     }
 
-    public Chat(String sender, String receiver, String message, boolean isseen) {
+
+
+    public Chat(String sender, String receiver, String message, boolean isseen,String reportImage) {
         this.sender = sender;
         this.receiver = receiver;
         this.message = message;
         this.isseen=isseen;
+        this.ReportImage = reportImage;
+
+    }
+
+    public String getReportImage() {
+        return ReportImage;
+    }
+
+    public void setReportImage(String reportImage) {
+        ReportImage = reportImage;
     }
 
     public Chat() {
