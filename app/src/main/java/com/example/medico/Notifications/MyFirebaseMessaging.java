@@ -55,14 +55,14 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
         int j = Integer.parseInt(user.replaceAll("[\\D]",""));
         Intent intent=new Intent(this, MessageActivity.class);
         Bundle bundle=new Bundle();
-        bundle.putString("userid",user);
+        bundle.putString("fName",user);
         intent.putExtras(bundle);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent=PendingIntent.getActivity(this,j,intent,PendingIntent.FLAG_ONE_SHOT);
 
         Uri defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         OreoNotifiaction oreoNotifiaction= new OreoNotifiaction(this);
-        Notification.Builder builder= oreoNotifiaction.getOreoNotification(title,body,pendingIntent,
+        Notification  .Builder builder= oreoNotifiaction.getOreoNotification(title,body,pendingIntent,
                 defaultSound,icon);
         int i=0;
         if(j>0){
