@@ -61,7 +61,7 @@ public class homeFrag extends Fragment {
         blogRecyclerView.setHasFixedSize(true);
         final CommentActivity id = new CommentActivity();
         if(mAuth.getCurrentUser()!=null) {
-
+            final String value = getArguments().getString("uploadCat");
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
             //Query firstQuery = firebaseDatabase.getReference("Posts").orderByChild("timeStamp");
             DatabaseReference databaseReference = firebaseDatabase.getReference("Posts");
@@ -71,11 +71,12 @@ public class homeFrag extends Fragment {
 
                     bloglist = new ArrayList<>();
                     for (DataSnapshot postsnap : dataSnapshot.getChildren()) {
-
-                        String blogPostId = postsnap.getKey();
-                        UploadPosts blogPost = postsnap.getValue(UploadPosts.class).withId(blogPostId);
-                        bloglist.add(blogPost);
-                        //id.getBlogListId(blogPostId);
+                        if (postsnap.child("uploadCat").getValue().equals(value)) {
+                            String blogPostId = postsnap.getKey();
+                            UploadPosts blogPost = postsnap.getValue(UploadPosts.class).withId(blogPostId);
+                            bloglist.add(blogPost);
+                            //id.getBlogListId(blogPostId);
+                        }
                     }
                     blogRecyclerAdapter = new BlogRecyclerAdapter(getActivity(), bloglist);
                     blogRecyclerView.setAdapter(blogRecyclerAdapter);

@@ -15,8 +15,11 @@ import android.speech.RecognizerIntent;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.medico.Model.UploadPosts;
@@ -61,7 +64,8 @@ public class newPost extends AppCompatActivity {
     private ImageView micImage;
     private boolean isposttext;
     private boolean issummarytext;
-
+    Spinner post_category;
+    String cat;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,8 +89,42 @@ public class newPost extends AppCompatActivity {
         floatingPost = findViewById(R.id.floatingPost);
         postImage = findViewById(R.id.postCertificateImage);
         micImage =  (ImageView) findViewById(R.id.imageView2);
+        post_category =(Spinner) findViewById(R.id.post_category);
 
+        ArrayAdapter<String> newadapter = new ArrayAdapter<String>(
+                newPost.this, R.layout.spinner_layout_test, getResources().getStringArray(R.array.post_category));
+        post_category.setAdapter(newadapter);
         //progressBarImage=findViewById(R.id.progressBarImage);
+        post_category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+
+                if(position == 0)
+                {
+                    cat=null;
+                }
+                else if(position == 1)
+                {
+                    cat = "generalReasoning";
+                }
+                else if(position == 2)
+                {
+                    cat="nutrients";
+                }
+                else if(position == 3)
+                {
+                    cat= "healthcare";
+                }
+                else if(position == 4)
+                {
+                    cat= "newFacts";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
 
 
 
@@ -145,7 +183,7 @@ public class newPost extends AppCompatActivity {
             public void onClick(View view) {
                 String title = postTitle.getText().toString();
                 String subject = postSubject.getText().toString();
-                if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(subject) && postImageUri != null) {
+                if (!TextUtils.isEmpty(title) && !TextUtils.isEmpty(subject) && postImageUri != null && !cat.equals(null)) {
                     dialog = new ProgressDialog(newPost.this);
                     dialog.setMessage("Posting ...");
                     dialog.show();
@@ -166,6 +204,7 @@ public class newPost extends AppCompatActivity {
                                     uploadPosts.setUploadTitle(title);
                                     uploadPosts.setUploadSubject(summary);
                                     uploadPosts.setUploadId(userId);
+                                    uploadPosts.setUploadCat(cat);
                                     int time = (int) (System.currentTimeMillis());
                                     Timestamp tsTemp = new Timestamp(time);
                                     uploadPosts.setTimeStamp(tsTemp);

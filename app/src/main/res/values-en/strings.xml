@@ -24,6 +24,13 @@
         <item>Hindi</item>
     </string-array>
 
+    <string-array name="post_category">
+        <item>Select Category</item>
+        <item>General Reasoning</item>
+        <item>Nutreitns</item>
+        <item>Healthcare &amp; Cleanliness</item>
+        <item>New Facts</item>
+    </string-array>
     <string name="post_title">Posts</string>
 
     <string name="confirm_password">Confirm Password</string>

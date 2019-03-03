@@ -14,6 +14,7 @@ public class UploadPosts extends BlogPostId{
     private Object timeStamp ;
     private String uploadTitleHindi;
     private String uploadSubjectHindi;
+    private String uploadCat;
 
     public Object getTimeStamp() {
         return timeStamp;
@@ -23,7 +24,7 @@ public class UploadPosts extends BlogPostId{
         this.timeStamp = timeStamp;
     }
 
-    public UploadPosts(String uploadImageUrl, String uploadTitle, String uploadSubject,String uploadTitleHindi,String uploadSubjectHindi, String uploadId) {
+    public UploadPosts(String uploadImageUrl, String uploadTitle, String uploadSubject,String uploadTitleHindi,String uploadSubjectHindi, String uploadId, String uploadCat) {
         this.uploadImageUrl = uploadImageUrl;
         this.uploadTitle = uploadTitle;
         this.uploadSubject = uploadSubject;
@@ -31,6 +32,7 @@ public class UploadPosts extends BlogPostId{
         this.timeStamp = ServerValue.TIMESTAMP;
         this.uploadTitleHindi=uploadTitleHindi;
         this.uploadSubjectHindi=uploadSubjectHindi;
+        this.uploadCat=uploadCat;
     }
 
     public UploadPosts() {
@@ -93,4 +95,11 @@ public class UploadPosts extends BlogPostId{
         this.postKey = postKey;
     }
 
+    public String getUploadCat() {
+        return uploadCat;
+    }
+
+    public void setUploadCat(String uploadCat) {
+        this.uploadCat=uploadCat;
+    }
 }

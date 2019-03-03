@@ -3,6 +3,7 @@ package com.example.medico.Activity;
         import android.content.Intent;
         import android.os.Bundle;
 
+        import com.example.medico.Fragments.CategoryFrag;
         import com.example.medico.Fragments.ProfileFragment;
         import com.example.medico.Fragments.homeFrag;
         import com.example.medico.Activity.newPost;
@@ -31,6 +32,7 @@ package com.example.medico.Activity;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    static String key;
 
     boolean twice;
     final String TAG=getClass().getName();
@@ -46,7 +48,7 @@ public class HomeActivity extends AppCompatActivity
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
-      ft.replace(R.id.frmLyt,new homeFrag());
+      ft.replace(R.id.frmLyt,new CategoryFrag());
         ft.commit();
 
 
@@ -124,7 +126,7 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-           ft.replace(R.id.frmLyt,new homeFrag());
+           ft.replace(R.id.frmLyt,new CategoryFrag());
             ft.commit();
         } else if (id == R.id.nav_chat) {
             startActivity(new Intent(HomeActivity.this, ChatActivity.class));

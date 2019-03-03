@@ -24,6 +24,14 @@
         <item>हिंदी</item>
     </string-array>
 
+    <string-array name="post_category">
+        <item>वर्ग चुने</item>
+        <item>सामान्य तर्क</item>
+        <item>पोषक तत्वों</item>
+        <item>हेल्थकेयर और सफाई</item>
+        <item>नए तथ्य</item>
+    </string-array>
+
     <string name="post_title">पोस्ट</string>
     <string name="SignUp">साइन अप</string>
 
