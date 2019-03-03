@@ -3,7 +3,6 @@
     package="com.example.medico">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -15,11 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="stateVisible|adjustPan">
+        <activity android:name=".Activity.BabyDetailsActivity"></activity>
+        <activity android:name=".myposts" />
+        <!--
+<activity android:name=".Activity.UploadHistory">
 
-        <activity android:name=".myposts"></activity>
-        <!--<activity android:name=".Activity.UploadHistory">
-
-        </activity>-->
+        </activity>
+        -->
         <activity android:name=".Activity.CommentActivity" />
         <activity
             android:name=".Activity.AwarenessActivity"
@@ -58,8 +59,9 @@
 <android:hardwareAccelerated="false" />
     <android:largeHeap="true">
         -->
-        <activity android:name=".Activity.DiseaseDescriptionActivity"
-            android:parentActivityName=".Activity.DiseasesType"/>
+        <activity
+            android:name=".Activity.DiseaseDescriptionActivity"
+            android:parentActivityName=".Activity.DiseasesType" />
         <activity android:name=".Activity.verifyotp" />
         <activity
             android:name=".Activity.settings"
@@ -126,7 +128,6 @@
             android:name=".Notifications.MyFirebaseMessaging"
             android:enabled="true"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
