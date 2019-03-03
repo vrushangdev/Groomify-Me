@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ChatsFragment extends Fragment {
+public class  ChatsFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private UserAdapter userAdapter;

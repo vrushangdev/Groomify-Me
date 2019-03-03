@@ -51,8 +51,11 @@ public class myposts extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myposts);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar=findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("My Posts");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mypostArrayList = new ArrayList<MyPostModel>();
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(), RecyclerView.VERTICAL, false));

@@ -197,14 +197,22 @@ public class HomeActivity extends AppCompatActivity
             startActivity(new Intent(HomeActivity.this, UploadHistory.class));
             ft.commit();
         }*/
+        else if (id == R.id.nav_profie) {
+            ft.replace(R.id.frmLyt,new ProfileFragment());
+            ft.commit();
+        }
         else if (id == R.id.nav_settings) {
             startActivity(new Intent(HomeActivity.this, settings.class));
             ft.commit();
-        } else if (id == R.id.nav_about) {
+        } else if (id == R.id.nav_myposts) {
             startActivity(new Intent(HomeActivity.this, myposts.class));
             ft.commit();
 
-        } else if (id == R.id.nav_logut) {
+        }  else if (id == R.id.nav_about) {
+            startActivity(new Intent(HomeActivity.this, myposts.class));
+            ft.commit();
+
+        }else if (id == R.id.nav_logut) {
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(HomeActivity.this, LogIn.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             return true;

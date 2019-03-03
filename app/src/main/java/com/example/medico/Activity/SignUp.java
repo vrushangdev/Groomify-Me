@@ -2,14 +2,11 @@ package com.example.medico.Activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.Handler;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
@@ -25,8 +22,6 @@ import android.widget.Toast;
 import android.widget.ProgressBar;
 
 import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 import com.example.medico.Model.User;
@@ -40,7 +35,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity {
     Button BtnSuSignUp;
-    EditText FName, LName,ContactNo, Password, Email, CPassword;
+    EditText FullName, LName,ContactNo, Password, Email, CPassword;
     TextView TvLogin,SignUp;
     boolean twice;
     boolean verified = false;
@@ -63,9 +58,9 @@ public class SignUp extends AppCompatActivity {
         frombottom = AnimationUtils.loadAnimation(this,R.anim.frombottom);
         fromtop = AnimationUtils.loadAnimation(this,R.anim.fromtop);
         BtnSuSignUp = (Button) findViewById(R.id.BtnSuSignUp);
-        FName = (EditText) findViewById(R.id.FName);
-        LName = (EditText) findViewById(R.id.LName);
-        CPassword = (EditText) findViewById(R.id.CPassword);
+        FullName = (EditText) findViewById(R.id.FullName);
+        //LName = (EditText) findViewById(R.id.LName);
+       // CPassword = (EditText) findViewById(R.id.CPassword);
         ContactNo = (EditText) findViewById(R.id.ContactNo);
         Password = (EditText) findViewById(R.id.Password);
         Email = (EditText) findViewById(R.id.Email);
@@ -79,12 +74,12 @@ public class SignUp extends AppCompatActivity {
         TvLogin.startAnimation(frombottom);
         BtnSuSignUp.startAnimation(frombottom);
         SignUp.startAnimation(fromtop);
-        FName.startAnimation(fromtop);
-        LName.startAnimation(fromtop);
+        FullName.startAnimation(fromtop);
+       // LName.startAnimation(fromtop);
         ContactNo.startAnimation(fromtop);
         Email.startAnimation(fromtop);
         Password.startAnimation(fromtop);
-        CPassword.startAnimation(fromtop);
+       // CPassword.startAnimation(fromtop);
         category.startAnimation(fromtop);
         language.startAnimation(fromtop);
 
@@ -127,17 +122,17 @@ public class SignUp extends AppCompatActivity {
                 dialog = new ProgressDialog(SignUp.this);
                 dialog.setMessage("Loading");
                 dialog.show();
-                if (FName.getText().toString().isEmpty()) {
+                if (FullName.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "FirstName Required..!!", Toast.LENGTH_SHORT).show();
-                    FName.setError("FirstName Required");
+                    FullName.setError("FirstName Required");
                     dialog.dismiss();
                     return;
-                } else if (LName.getText().toString().isEmpty()) {
+                } /*else if (LName.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "LastName Required..!!", Toast.LENGTH_SHORT).show();
                     LName.setError("LastName Required");
                     dialog.dismiss();
                     return;
-                } else if (ContactNo.getText().toString().isEmpty()) {
+                }*/ else if (ContactNo.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Contact Required..!!", Toast.LENGTH_SHORT).show();
                     ContactNo.setError("Contact Required");
                     dialog.dismiss();
@@ -158,22 +153,22 @@ public class SignUp extends AppCompatActivity {
                     Password.setError("Password Required");
                     dialog.dismiss();
                     return;
-                } else if (CPassword.getText().toString().isEmpty()) {
+                } /*else if (CPassword.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Password Required..!!", Toast.LENGTH_SHORT).show();
                     Password.setError("Password Required");
                     dialog.dismiss();
                     return;
-                } else if (!(Password.getText().toString()).equals(CPassword.getText().toString())) {
+                }*/ /*else if (!(Password.getText().toString()).equals(CPassword.getText().toString())) {
                     Toast.makeText(getApplicationContext(), "Password not match", Toast.LENGTH_SHORT).show();
                     CPassword.setError("Password not match");
                     dialog.dismiss();
                     return;
-                } else {
+                }*/ else {
                     // progressBar2.setVisibility(View.VISIBLE);
                     final String email = Email.getText().toString().trim();
                     final String password = Password.getText().toString().trim();
-                    final String fName = FName.getText().toString().trim();
-                    final String lName = LName.getText().toString().trim();
+                    final String fullName = FullName.getText().toString().trim();
+                    //final String lName = LName.getText().toString().trim();
                     final String mid = ContactNo.getText().toString();
                     final String status = "offline";
                     final String imageURL = "default";
@@ -193,7 +188,7 @@ public class SignUp extends AppCompatActivity {
                                         if (spinnerValue.equals("Patient") || spinnerValue.equals("मरीज")) {
                                             databaseUser = FirebaseDatabase.getInstance().getReference("user_data");
                                             DatabaseReference mRef = databaseUser.child(id);
-                                            User user_db = new User(fName, lName, mid, email, id, "default", "offline", Degree, ClinicNo, cat, verified);
+                                            User user_db = new User(fullName, mid, email, id, "default", "offline", Degree, ClinicNo, cat, verified);
                                             mRef.setValue(user_db);
                                             Toast.makeText(SignUp.this, "Patient Successfully Registered", Toast.LENGTH_SHORT).show();
                                             Intent intent;
@@ -205,8 +200,7 @@ public class SignUp extends AppCompatActivity {
                                             Intent intent;
                                             intent = new Intent(SignUp.this, doctorDetails.class);
                                             intent.putExtra("phoneNumber", mid);
-                                            intent.putExtra("fName", fName);
-                                            intent.putExtra("lName", lName);
+                                            intent.putExtra("fullName", fullName);
                                             intent.putExtra("email", email);
                                             intent.putExtra("id", id);
                                             intent.putExtra("imageURL", imageURL);
@@ -306,7 +300,7 @@ public class SignUp extends AppCompatActivity {
 
     public void CleanEditText()
     {
-        FName.setText("");
+        FullName.setText("");
         LName.setText("");
         ContactNo.setText("");
         Email.setText("");

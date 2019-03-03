@@ -43,28 +43,15 @@
             android:gravity="center"
             android:orientation="vertical"
             android:paddingTop="50dp">
-
+            <!--android:hint="@string/full_name"-->
             <EditText
-                android:id="@+id/FName"
+                android:id="@+id/FullName"
                 android:layout_width="275dp"
                 android:layout_height="42dp"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:background="@drawable/roundcorner"
-                android:hint="@string/first_name"
-                android:inputType="text"
-                android:paddingLeft="20dp"
-                android:textColorHint="#9D90D0"
-                android:textSize="20dp" />
-
-            <EditText
-                android:id="@+id/LName"
-                android:layout_width="275dp"
-                android:layout_height="42dp"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:background="@drawable/roundcorner"
-                android:hint="@string/last_name"
+                android:hint="Full Name"
                 android:inputType="text"
                 android:paddingLeft="20dp"
                 android:textColorHint="#9D90D0"
@@ -104,19 +91,6 @@
                 android:layout_margin="10dp"
                 android:background="@drawable/roundcorner"
                 android:hint="@string/password"
-                android:inputType="textPassword"
-                android:paddingLeft="20dp"
-                android:textColorHint="#9D90D0"
-                android:textSize="20dp" />
-
-            <EditText
-                android:id="@+id/CPassword"
-                android:layout_width="275dp"
-                android:layout_height="42dp"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:background="@drawable/roundcorner"
-                android:hint="@string/confirm_password"
                 android:inputType="textPassword"
                 android:paddingLeft="20dp"
                 android:textColorHint="#9D90D0"

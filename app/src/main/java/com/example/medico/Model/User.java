@@ -1,8 +1,8 @@
 package com.example.medico.Model;
 
 public class User {
-    private String fName;
-    private String lName;
+    private String fullName;
+   // private String lName;
     private String mid;
     private String email;
     private String id;
@@ -16,9 +16,9 @@ public class User {
     public User() {
     }
 
-    public User(String fName, String lName, String mid, String email, String id, String imageUrl, String status, String degree, String clininiNo, String category, Boolean isVerified) {
-        this.fName = fName;
-        this.lName = lName;
+    public User(String fullName, String mid, String email, String id, String imageUrl, String status, String degree, String clininiNo, String category, Boolean isVerified) {
+        this.fullName = fullName;
+       // this.lName = lName;
         this.mid = mid;
         this.email = email;
         this.id = id;
@@ -31,21 +31,21 @@ public class User {
     }
 
     public String getfName() {
-        return fName;
+        return fullName;
     }
 
     public void setfName(String fName) {
-        this.fName = fName;
+        this.fullName = fName;
     }
 
-    public String getlName() {
+   /* public String getlName() {
         return lName;
     }
 
     public void setlName(String lName) {
         this.lName = lName;
     }
-
+*/
     public String getMid() {
         return mid;
     }
