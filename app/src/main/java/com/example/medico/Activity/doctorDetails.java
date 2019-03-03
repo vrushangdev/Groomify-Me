@@ -47,8 +47,7 @@ public class doctorDetails extends AppCompatActivity {
     DatabaseReference databaseuserdoctor;
     String mid;
     String email;
-    String fName;
-    String lName;
+    String fullName;
     String status;
     String imageURL;
     String id;
@@ -71,15 +70,16 @@ public class doctorDetails extends AppCompatActivity {
         Intent intent=getIntent();
         mid=intent.getStringExtra("phoneNumber");
         email = intent.getStringExtra("email");
-        fName = intent.getStringExtra("fName");
-        lName = intent.getStringExtra("lName");
+        fullName = intent.getStringExtra("fullName");
         id = intent.getStringExtra("id");
         imageURL= intent.getStringExtra("imageURL");
         status = intent.getStringExtra("status");
         verified = intent.getBooleanExtra("isverified",true);
         cat = intent.getStringExtra("category");
-        ClinicContactNo = findViewById(R.id.ClinicContactNo);
-        Degree = findViewById(R.id.Degree);
+
+
+        ClinicContactNo = (EditText)findViewById(R.id.ClinicContactNo);
+        Degree = (EditText)findViewById(R.id.Degree);
 
 
         imageView = (ImageView) findViewById(R.id.verify_doc);     //Camera Acess code
@@ -101,12 +101,7 @@ public class doctorDetails extends AppCompatActivity {
 
                     }
 
-                } else {
-
-                    BringImagePicker();
-
                 }
-
             }
 
         });
@@ -129,33 +124,45 @@ public class doctorDetails extends AppCompatActivity {
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if (resultCode == RESULT_OK) {
-                final String degree =Degree.getText().toString().trim();
-                final String ClinicNo =ClinicContactNo.getText().toString().trim();
-                databaseUser = FirebaseDatabase.getInstance().getReference("user_data");
-                DatabaseReference mRef= databaseUser.child(id);
-                User user_db = new User(fName,lName,mid ,email,id,"default","offline", degree, ClinicNo,cat,verified);
-                mRef.setValue(user_db);
-                docURI = result.getUri();
-                imageView.setImageURI(docURI);
-                isChanged = true;
-                StorageReference filepath=storageReference.child("photos").child(docURI.getLastPathSegment());
-                filepath.putFile(docURI).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                if(ClinicContactNo.getText().toString().isEmpty())
+                {
+                    Toast.makeText(doctorDetails.this," contactField missing",Toast.LENGTH_LONG).show();
+                }
+                else if(Degree.getText().toString().isEmpty())
+                {
+                    Toast.makeText(doctorDetails.this," Degree Field missing",Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    final String degree =Degree.getText().toString().trim();
+                    final String ClinicNo =ClinicContactNo.getText().toString().trim();
+                    databaseUser = FirebaseDatabase.getInstance().getReference("user_data");
+                    DatabaseReference mRef= databaseUser.child(id);
+                    User user_db = new User(fullName,mid ,email,id,"default","offline", degree, ClinicNo,cat,verified);
+                    mRef.setValue(user_db);
+                    docURI = result.getUri();
+                    imageView.setImageURI(docURI);
+                    isChanged = true;
+                    StorageReference filepath=storageReference.child("photos").child(docURI.getLastPathSegment());
+                    filepath.putFile(docURI).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Toast.makeText(doctorDetails.this,"Upload done",Toast.LENGTH_LONG).show();
 
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
 
-                    }
-                });
-            /*      DatabaseReference imageRef=databaseuserdoctor.child("image");
-                 imageRef.setValue(docURI);*/
-                Intent intent1=new Intent(doctorDetails.this, verifyotp.class);
-                intent1.putExtra("phoneNumber",mid);
-                startActivity(intent1);
+                        }
+                    });
+
+                    Intent intent1=new Intent(doctorDetails.this, verifyotp.class);
+                    intent1.putExtra("phoneNumber",mid);
+                    startActivity(intent1);
+                }
+
 
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
 
