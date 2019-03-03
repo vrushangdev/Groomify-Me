@@ -113,7 +113,7 @@ public class newPost extends AppCompatActivity {
                 }
                 else if(position == 3)
                 {
-                    cat= "healthcare";
+                    cat= "healthCare";
                 }
                 else if(position == 4)
                 {

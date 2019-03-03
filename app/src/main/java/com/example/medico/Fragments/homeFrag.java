@@ -77,9 +77,9 @@ public class homeFrag extends Fragment {
                             bloglist.add(blogPost);
                             //id.getBlogListId(blogPostId);
                         }
+                        blogRecyclerAdapter = new BlogRecyclerAdapter(getActivity(), bloglist);
+                        blogRecyclerView.setAdapter(blogRecyclerAdapter);
                     }
-                    blogRecyclerAdapter = new BlogRecyclerAdapter(getActivity(), bloglist);
-                    blogRecyclerView.setAdapter(blogRecyclerAdapter);
                 }
 
                 @Override
